@@ -1,6 +1,6 @@
 # 东方宇阳 Rebucca 引入审计 — 任务
 
-版本：1.0.0｜日期：2026-10-04｜状态：执行中
+版本：1.0.1｜日期：2026-10-04｜状态：本期引入与审计材料已交付
 
 依次核验来源、审计、部署设计和远程交付。任务完成指本期材料完成；漏洞整改、真实摄像头、模型效果及生产上线尚不在执行状态。
 
@@ -11,7 +11,7 @@
   "kind": "task",
   "project_id": "yy-rebucca",
   "scope_id": "rebucca.adoption",
-  "doc_version": "1.0.0",
+  "doc_version": "1.0.1",
   "spec_revision": 1,
   "spec_doc_version": "1.0.0",
   "spec_sha256": "e0762315f4b9d722a56dc310ba7b66bc2e014550532c44e926f900754792d53e",
@@ -90,8 +90,12 @@
       "done_when": [
         "新增文件远程摘要与本地一致；原产品源码仍匹配被审计上游"
       ],
-      "status": "running",
-      "evidence": []
+      "status": "done",
+      "evidence": [
+        "docs/security/evidence/publication.json",
+        "https://github.com/huangfushaohui8-png/rebucca/pull/1",
+        "远程文件核验提交 3b3caaabeada0e38b9e9837c77f984927880c2b2"
+      ]
     }
   ]
 }

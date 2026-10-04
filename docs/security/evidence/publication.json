@@ -1,0 +1,13 @@
+{
+  "time_utc": "2026-10-04T01:15:18.282982+00:00",
+  "repository": "huangfushaohui8-png/rebucca",
+  "branch": "audit/rebucca-20261004",
+  "verified_commit": "3b3caaabeada0e38b9e9837c77f984927880c2b2",
+  "verified_tree": "08af46f626a865faa9098966299ef667a257758a",
+  "original_files_verified": 166,
+  "new_files_verified": 18,
+  "method": "GitHub recursive Git tree blob SHA/mode against upstream manifest and actual local Git blob hashes",
+  "errors": [],
+  "status": "PASS",
+  "scope": "first publication; subsequent progress-only metadata update separately verified"
+}
