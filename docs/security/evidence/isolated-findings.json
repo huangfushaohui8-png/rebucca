@@ -1,0 +1,55 @@
+{
+  "upstream_commit": "8440b5545fc4f02bad105cbcc1ed09f24a0a2dfd",
+  "method": "AST-selected reviewed function bodies, mock requests/services, in-memory SQLite, temporary synthetic files",
+  "limits": "No full Django HTTP stack, real shell execution, remote attack, model/binary execution, real credentials or production writes",
+  "checks": [
+    {
+      "id": "F01-ANON-SNAP",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "匿名截图请求被中间件放行；对照 /user/openIndex 返回 /login"
+    },
+    {
+      "id": "F02-ANON-INNER",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "无 Safe、无登录的内部删除回调被放行"
+    },
+    {
+      "id": "F01-SHELL-DATAFLOW",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "匿名输入未经 URL 编码进入 shell=True 的命令字符串；subprocess 被替身拦截，未执行命令"
+    },
+    {
+      "id": "F01-CACHED-IMAGE",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "匿名请求直接读取合成缓存截图；仅访问临时目录样例"
+    },
+    {
+      "id": "F02-DELETE-DATAFLOW",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "无鉴权请求到达记录删除操作；数据库对象为替身，真实记录未改动"
+    },
+    {
+      "id": "F05-SQL",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "合成 code 改变查询语义，返回本不匹配的摄像头；仅内存 SQLite，无真实凭据"
+    },
+    {
+      "id": "F04-ROLE",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "普通合成会话可到达管理员改密码和保存路径；User 为替身，真实用户未改变"
+    },
+    {
+      "id": "F06-FILE-ESCAPE",
+      "evidence_check": "PASS",
+      "upstream_security_boundary": "FAIL",
+      "observed": "下载路径可离开 storageTempDir，且会计划删除该路径；仅临时合成文件，删除线程未执行"
+    }
+  ]
+}

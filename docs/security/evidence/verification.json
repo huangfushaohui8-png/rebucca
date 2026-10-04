@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-04",
+  "upstream_commit": "8440b5545fc4f02bad105cbcc1ed09f24a0a2dfd",
+  "environment": {
+    "python": "3.12.14",
+    "os": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "bandit": "1.9.4",
+    "pip-audit": "2.10.1"
+  },
+  "checks": [
+    {
+      "name": "Python AST syntax",
+      "status": "PASS",
+      "files": 76,
+      "errors": 0,
+      "execution": "AST parse only; not import application"
+    },
+    {
+      "name": "Bandit scan",
+      "status": "COMPLETED_WITH_FINDINGS",
+      "loc": 16386,
+      "raw_findings": 209,
+      "severity_counts": {
+        "HIGH": 7,
+        "MEDIUM": 23,
+        "LOW": 179
+      },
+      "errors": 0,
+      "false_positive_note": "protocol digest MD5 and constant hardware commands manually distinguished from web tainted shell sink"
+    },
+    {
+      "name": "Exact pinned direct dependencies",
+      "status": "COMPLETED_WITH_FINDINGS",
+      "cli_exit_code": 1,
+      "direct_pins": 12,
+      "raw_rows": 99,
+      "unique_advisory_groups": 57,
+      "affected_packages": 4,
+      "excluded": "4 floating dependencies (torch, ultralytics, openai, openvino), all transitive deps and native binaries"
+    },
+    {
+      "name": "Isolated risk validation",
+      "status": "PASS_FOR_EVIDENCE_ONLY",
+      "cases": 8,
+      "upstream_security_boundary": "FAIL",
+      "evidence": "isolated-findings.json"
+    },
+    {
+      "name": "Binary and weights provenance",
+      "status": "PARTIAL",
+      "asset_hashes": 41,
+      "executed": false
+    },
+    {
+      "name": "Full Django HTTP / browser / real stream / model / Docker application / live egress tracing",
+      "status": "NOT_RUN"
+    }
+  ],
+  "commands": [
+    "python3 docs/security/tools/isolate_checks.py",
+    "bandit -r app framework manage.py -f json -o docs/security/evidence/bandit.json",
+    "pip-audit -r docs/security/evidence/pinned-direct.txt --no-deps --disable-pip --progress-spinner off -f json -o docs/security/evidence/pip-audit.json"
+  ],
+  "device_checks": [
+    {
+      "device": "Haoyus-MacBook-Pro.local",
+      "cpu": "Intel Core i7, 4 physical cores / 8 threads",
+      "memory_gib": 32,
+      "disk_available_gib": 809,
+      "docker_server": "29.7.2",
+      "status": "read-only capability verification; application not started"
+    },
+    {
+      "device": "huangfushaohuideMacBook-Pro.local",
+      "cpu_arch": "Intel x86_64, 8 physical cores",
+      "memory_gib": 32,
+      "disk_available_gib": 341,
+      "docker_status": "Docker CLI found by absolute path; daemon socket missing at verification time",
+      "status": "not ready for container verification; no services started"
+    }
+  ]
+}

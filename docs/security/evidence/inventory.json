@@ -1,0 +1,714 @@
+{
+  "python_files": 76,
+  "syntax_errors": [],
+  "files": [
+    {
+      "path": "zlm/.gitignore",
+      "bytes": 113,
+      "sha256": "f3b5a98d0df488860185339a15f93cfdb7c9cfb9bcd432c7b6d2d9784f1d2723"
+    },
+    {
+      "path": "zlm/THIRD_PARTY_LICENSES",
+      "bytes": 571,
+      "sha256": "6b44ae21a053dd9d768c1393997966dfb1d48acadac9d8ce422da26888703393"
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/rebucca_zlm",
+      "bytes": 10968720,
+      "sha256": "62097ee2337ce28e809faeda5b31f81832cb341489a6a4befb6b08f33b834f1c"
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/libssl.so.1.1",
+      "bytes": 598104,
+      "sha256": "5ca16b9d9251a5d2c5d14db43ebbd81eab9799043a63a548aec75fb6b505c4f2"
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/version.txt",
+      "bytes": 35,
+      "sha256": "cf324657ac3c3211211abd147b22542a7b1cce0c5ae116703a8f9b9db2113ee7"
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/config.ini",
+      "bytes": 3404,
+      "sha256": "c56e602fb9c0b6561ff03aaf29758a890d15a5d8ae0157a19684ece9d7a2a04e"
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/libsrtp2.so.1",
+      "bytes": 121288,
+      "sha256": "7437499024c36834c01462d18f109a6fc7e406c90e2f8e134c40a0a1d5166049"
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/libcrypto.so.1.1",
+      "bytes": 2958176,
+      "sha256": "bf99926de2ce739d3fdccc4a551d97d64aac6e968589aaad9dc4ac8d143b519a"
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/rebucca_zlm",
+      "bytes": 10489744,
+      "sha256": "6fa4d16e0ef760302564a7aa8790d93465f0212dc1173a4a9f39788469190496"
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/libssl.so.1.1",
+      "bytes": 564864,
+      "sha256": "278540b39ba74524366bfd3bc6f40f23d3e798951413924075c67938212a337f"
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/version.txt",
+      "bytes": 35,
+      "sha256": "cf324657ac3c3211211abd147b22542a7b1cce0c5ae116703a8f9b9db2113ee7"
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/config.ini",
+      "bytes": 3404,
+      "sha256": "c56e602fb9c0b6561ff03aaf29758a890d15a5d8ae0157a19684ece9d7a2a04e"
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/libsrtp2.so.1",
+      "bytes": 112864,
+      "sha256": "727495870995345b6e81bd3a98c8d4894897af76e98dc77f4b047820893a84f5"
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/libcrypto.so.1.1",
+      "bytes": 2612960,
+      "sha256": "7f78e54add153922f5fcbbff4742673b37ae93e0b4fe224131e91afa9864f6f6"
+    },
+    {
+      "path": "zlm/bin.x86.windows10/rebucca_zlm.exe",
+      "bytes": 10028544,
+      "sha256": "af4db7fb9b0fd677b1063815340dea1062405d1482c78f7f110820e867f5f57d"
+    },
+    {
+      "path": "zlm/bin.x86.windows10/version.txt",
+      "bytes": 116,
+      "sha256": "24769703b553e4a333e8ec2c6d4a021fa06a2667446ab7b551faee0f8af12cc4"
+    },
+    {
+      "path": "zlm/bin.x86.windows10/config.ini",
+      "bytes": 3404,
+      "sha256": "c56e602fb9c0b6561ff03aaf29758a890d15a5d8ae0157a19684ece9d7a2a04e"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-hard.js",
+      "bytes": 439857,
+      "sha256": "ad45235478e9d452b9d41d3a64ddf45c0cd57f474e13b37e8db020d836d746d0"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-audio.wasm",
+      "bytes": 443508,
+      "sha256": "58be0e2b8ecacd3edb5472a069c21277f5df25ba5695d4250673504e218a4a3c"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-hard-not-wasm.js",
+      "bytes": 373007,
+      "sha256": "828a21e602df595799e9d307dcc617147b689c9bc52a1e121cea245ee91e277d"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt-worker.js",
+      "bytes": 123563,
+      "sha256": "ea900364784880a5173c5d80c25197bda272df1ffafa6b6ecb47e9de68ea2fef"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro.wasm",
+      "bytes": 1110396,
+      "sha256": "fdfea41a5266d33f6cbd899bb87390961917d5e8ad47b209fa2242af21a55f8f"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd.js",
+      "bytes": 468866,
+      "sha256": "54d0cbab256ec2dc2e320294fd8fd69327e9fea60b45bcf97afd620ca1c13424"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt.js",
+      "bytes": 476509,
+      "sha256": "1872f6566dc26469552c765c4dffae299d80c606da4d06860f56d151a0f57fac"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt-worker.worker.js",
+      "bytes": 2826,
+      "sha256": "e1a19e3dbf39e649858fa0ce9998cc8f2ee2dcaca8a4f095f1515b9b1595f369"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/easyplayer-pro-talk.js",
+      "bytes": 26735,
+      "sha256": "b464cc91dab4d2eec1d7826aa19889982cd80a2b85fc945e07763eb7a7b3d398"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt.js",
+      "bytes": 515440,
+      "sha256": "607cc422bb36a2842a809996133f0c06df3c624e734d3a7934977b556ea8c0a2"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd.wasm",
+      "bytes": 1298433,
+      "sha256": "9a638fb5c93fba8637d662f435f46cf1df347b395d6f88d6d728d6fe7b2afe37"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/easyplayer-pro-multi.js",
+      "bytes": 3794295,
+      "sha256": "ca2726bab3693911529b178d08aa29fba26c9f4fce0d39eafa30142ac3398fd9"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt-worker.worker.js",
+      "bytes": 2964,
+      "sha256": "f16fe161f1f4a55d371991d10f569f4b42e72b666ecbb1ebd831426e2ad82ccd"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-audio.js",
+      "bytes": 439856,
+      "sha256": "ec099ce1147ae89c44d8c46da70d25c8ff1c21e955ba5b6ef6a4901a77264f2e"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro.js",
+      "bytes": 506519,
+      "sha256": "8ef348b583e895b5c9630314e1ade1dc2248c690d0addcc47e9008c91f5f224d"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt-worker.wasm",
+      "bytes": 1345773,
+      "sha256": "8001dfc616331a13e5b99c5f696a0f6fcf2de29f429debbfc4c9f25912911b07"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt-worker.js",
+      "bytes": 68056,
+      "sha256": "0da580f8deba77bd25b02e31c290a0d289bb877502e36921b2a6fa22c370fa32"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/easyplayer-pro.js",
+      "bytes": 2753676,
+      "sha256": "9e2e2fbd1f2f83134278d744941e5651ce92a79cb4acf4999ff66a562852fe29"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt-worker.wasm",
+      "bytes": 1148800,
+      "sha256": "fe8cb35d57dcbdd643771d9ef41a20df5453d891ac8d150a6aea8b6c3b233fdf"
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-snap.wasm",
+      "bytes": 3034592,
+      "sha256": "3b2b2fbf561d239fb1b2683ef44772dc9ecd66b895b7ebb9f31585e8f799d14e"
+    },
+    {
+      "path": "static/upload/weight/20260705205352_yolo11n.onnx",
+      "bytes": 10720167,
+      "sha256": "67d04fb4d644f5dac0cc95e36285bc21659d1850db8c8163f2f7273e2cf0c8f3"
+    },
+    {
+      "path": "static/upload/weight/20260705205352_yolo11n.bin",
+      "bytes": 10566076,
+      "sha256": "13161375fd4fe0e8bf395fe0ce248c8a87a3591b530f9575d44c70dda1bad0db"
+    },
+    {
+      "path": "static/upload/weight/20260705205352_yolo11n.xml",
+      "bytes": 315370,
+      "sha256": "76fb0ca960f6b22f5a3a80ceaf9227be16dc6055dd56ecf2902b9e3a54b46496"
+    },
+    {
+      "path": "static/upload/weight/20260705130932_yolo11n.pt",
+      "bytes": 5613764,
+      "sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1"
+    }
+  ],
+  "pt_pickle_operations": [
+    {
+      "op": "GLOBAL",
+      "arg": "ultralytics.nn.tasks DetectionModel",
+      "pos": 244
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "collections OrderedDict",
+      "pos": 325
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 353
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 374
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "__builtin__ set",
+      "pos": 411
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 436
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 468
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 496
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 553
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 592
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 633
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 664
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 707
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 737
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 771
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 810
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 850
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 871
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch.nn.modules.container Sequential",
+      "pos": 876
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 933
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 941
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 954
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 962
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 970
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 981
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 989
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 997
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1005
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1013
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1021
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1029
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1037
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1045
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1053
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "ultralytics.nn.modules.conv Conv",
+      "pos": 1065
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1117
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1125
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1138
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1146
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1154
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1165
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1173
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1181
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1189
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1197
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1205
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1213
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1221
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1229
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1237
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch.nn.modules.conv Conv2d",
+      "pos": 1252
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1300
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch._utils _rebuild_parameter",
+      "pos": 1317
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch._utils _rebuild_tensor_v2",
+      "pos": 1352
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch HalfStorage",
+      "pos": 1403
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1479
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1485
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1492
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1498
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1519
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1532
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1540
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1548
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1559
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1567
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1575
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1583
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1591
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1599
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1607
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1615
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1623
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1631
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch.nn.modules.batchnorm BatchNorm2d",
+      "pos": 1917
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 1975
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2023
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2029
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2036
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2042
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2089
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2095
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2102
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2108
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2117
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2180
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2186
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2247
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2253
+    },
+    {
+      "op": "GLOBAL",
+      "arg": "torch LongStorage",
+      "pos": 2288
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2333
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2339
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2353
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2361
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2369
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2380
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2388
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2396
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2404
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2412
+    },
+    {
+      "op": "REDUCE",
+      "arg": null,
+      "pos": 2420
+    }
+  ],
+  "note": "pickletools parses opcodes without unpickling; binaries and weights not executed"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "stage": "delivery",
+  "project_id": "yy-rebucca",
+  "scopes_checked": 1,
+  "history_checked": true,
+  "errors": [],
+  "warnings": [],
+  "limit": "仅核验登记范围及提供的历史清单；不证明模块清单完整、业务正确、证据真实或 CI 已启用"
+}
