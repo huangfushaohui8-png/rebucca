@@ -1,0 +1,13 @@
+{
+  "name": "Rebucca",
+  "canonical_repository": "https://github.com/yuturuishi/rebucca",
+  "screenshot_repository_redirect": "https://github.com/beixiaocai/rebucca",
+  "user_repository": "https://github.com/huangfushaohui8-png/rebucca",
+  "upstream_commit": "8440b5545fc4f02bad105cbcc1ed09f24a0a2dfd",
+  "upstream_tree": "be1ec1c0caa2fefab52aeef8d65be29a75ce6af4",
+  "project_version": "1.005",
+  "commit_time_utc": "2026-10-03T07:14:13Z",
+  "import_date": "2026-10-04",
+  "license_file": "LICENSE",
+  "scope": "new root engineering and docs files only; original product source preserved"
+}

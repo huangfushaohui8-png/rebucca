@@ -1,0 +1,1001 @@
+{
+  "commit": "8440b5545fc4f02bad105cbcc1ed09f24a0a2dfd",
+  "files": [
+    {
+      "path": ".gitignore",
+      "git_mode": "100644",
+      "blob_sha": "0dae9b7713ec998bdfcf9fb04f671047d19ef635",
+      "bytes": 678
+    },
+    {
+      "path": "LICENSE",
+      "git_mode": "100644",
+      "blob_sha": "27756a149acc6298fc22ede337137f0e67a0645d",
+      "bytes": 1085
+    },
+    {
+      "path": "README.md",
+      "git_mode": "100644",
+      "blob_sha": "d286d601bd37fd2f4a5846695068c978370a22df",
+      "bytes": 10388
+    },
+    {
+      "path": "README_en.md",
+      "git_mode": "100644",
+      "blob_sha": "6722b31a3fcd66ed8f90f163dca10e3d1ed89d81",
+      "bytes": 12047
+    },
+    {
+      "path": "app/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "788de89e3c1cee9ce87da99059ba75d2afcab766",
+      "bytes": 180
+    },
+    {
+      "path": "app/admin.py",
+      "git_mode": "100644",
+      "blob_sha": "0588e64fd26c1e5f7d286118fe320e8da7bb345f",
+      "bytes": 243
+    },
+    {
+      "path": "app/analysis/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "8f076b17821919d87b58528920b93f1e6bfc878e",
+      "bytes": 1527
+    },
+    {
+      "path": "app/analysis/biz_rules.py",
+      "git_mode": "100644",
+      "blob_sha": "8d7e9ae6aa7c85937cfeb3d52fc0bfe518e45adf",
+      "bytes": 13696
+    },
+    {
+      "path": "app/analysis/detector.py",
+      "git_mode": "100644",
+      "blob_sha": "5f6da09bf8ea24fcb8d95b95e3ab6e3c61ec82ee",
+      "bytes": 1225
+    },
+    {
+      "path": "app/analysis/engines/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "7a9c4720fe667310e615337adb0ee2b9a4d64b21",
+      "bytes": 763
+    },
+    {
+      "path": "app/analysis/engines/base.py",
+      "git_mode": "100644",
+      "blob_sha": "0f6d27082cde107cd939524de09cc9b2e81affb2",
+      "bytes": 3680
+    },
+    {
+      "path": "app/analysis/engines/factory.py",
+      "git_mode": "100644",
+      "blob_sha": "9e89f83111cf5364e55dbb8baeaed35349a5528c",
+      "bytes": 3968
+    },
+    {
+      "path": "app/analysis/engines/onnx_engine.py",
+      "git_mode": "100644",
+      "blob_sha": "4372e594c7467df0f64ec01c852f4f98179404fd",
+      "bytes": 6067
+    },
+    {
+      "path": "app/analysis/engines/openvino_engine.py",
+      "git_mode": "100644",
+      "blob_sha": "da8d7edbdd7ec3915d5561821b49398b10d0f560",
+      "bytes": 7142
+    },
+    {
+      "path": "app/analysis/engines/pytorch_engine.py",
+      "git_mode": "100644",
+      "blob_sha": "619765b671628b1fd9bccd8e2850aac7966c0e74",
+      "bytes": 7169
+    },
+    {
+      "path": "app/analysis/engines/reid_onnx_engine.py",
+      "git_mode": "100644",
+      "blob_sha": "a4c0851eb56869a889c8a5008e0c689e0a1dc314",
+      "bytes": 7150
+    },
+    {
+      "path": "app/analysis/engines/yolo_postprocess.py",
+      "git_mode": "100644",
+      "blob_sha": "96952fa92a365747ff0dd0e45a19e8be68f56372",
+      "bytes": 13727
+    },
+    {
+      "path": "app/analysis/engines/yolo_pytorch_engine.py",
+      "git_mode": "100644",
+      "blob_sha": "c762d4936def2fcbc2ba8a933bd4dab466095770",
+      "bytes": 11797
+    },
+    {
+      "path": "app/analysis/event_bridge.py",
+      "git_mode": "100644",
+      "blob_sha": "02bf7e9a998463bd5d719318ffd2827981d5dfe0",
+      "bytes": 2508
+    },
+    {
+      "path": "app/analysis/frames.py",
+      "git_mode": "100644",
+      "blob_sha": "234098e7b3b29b8918546d73b37a2bc46ebfdaa9",
+      "bytes": 5059
+    },
+    {
+      "path": "app/analysis/inference_pool.py",
+      "git_mode": "100644",
+      "blob_sha": "50c0e7ccc5c93d189d6be0fb8764818084d9baa4",
+      "bytes": 11338
+    },
+    {
+      "path": "app/analysis/manager.py",
+      "git_mode": "100644",
+      "blob_sha": "60f2fe54f8e1cb3318a20718f4a6bfc2027c9a1e",
+      "bytes": 32119
+    },
+    {
+      "path": "app/analysis/motion.py",
+      "git_mode": "100644",
+      "blob_sha": "2f3f9d1d0a6ec6e66eec4c3d13a1aa28c4a4b55c",
+      "bytes": 3486
+    },
+    {
+      "path": "app/analysis/pipeline.py",
+      "git_mode": "100644",
+      "blob_sha": "f2d6998cae08068c9e3e24ebd5c6f65a860d0813",
+      "bytes": 50617
+    },
+    {
+      "path": "app/analysis/process_worker.py",
+      "git_mode": "100644",
+      "blob_sha": "dc8e865e448bed22ecaaa37c65a03720c02ba735",
+      "bytes": 7354
+    },
+    {
+      "path": "app/analysis/remote_detector.py",
+      "git_mode": "100644",
+      "blob_sha": "115ad90615446ce15d6152b71647f7833b643ab0",
+      "bytes": 6467
+    },
+    {
+      "path": "app/analysis/tracker.py",
+      "git_mode": "100644",
+      "blob_sha": "44687fb46c164061a2add7b82c74a75b5b7b6c14",
+      "bytes": 3655
+    },
+    {
+      "path": "app/analysis/worker_pool.py",
+      "git_mode": "100644",
+      "blob_sha": "443d90f2e1cfe33a0adffa31647b8e17c2867db4",
+      "bytes": 7249
+    },
+    {
+      "path": "app/apps.py",
+      "git_mode": "100644",
+      "blob_sha": "3dfec8391f58cbfde844624a5646a176d884e5c9",
+      "bytes": 3924
+    },
+    {
+      "path": "app/context_processors.py",
+      "git_mode": "100644",
+      "blob_sha": "c4c7bf576717dd42e19a49d6d87baea0d787995f",
+      "bytes": 1127
+    },
+    {
+      "path": "app/middleware.py",
+      "git_mode": "100644",
+      "blob_sha": "e00c68a29b211b0a48122a11708e2941186f7268",
+      "bytes": 1702
+    },
+    {
+      "path": "app/models.py",
+      "git_mode": "100644",
+      "blob_sha": "e8176fc592b8857fbd5e19e7917aadbdb82dd78e",
+      "bytes": 20624
+    },
+    {
+      "path": "app/recording/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "c69d04028c08a09c92f631cf0ffdc4b13319a5b1",
+      "bytes": 199
+    },
+    {
+      "path": "app/recording/manager.py",
+      "git_mode": "100644",
+      "blob_sha": "d51a022e255cfb2c1e8a99aa6c37a7365cd0024b",
+      "bytes": 8296
+    },
+    {
+      "path": "app/scheduler.py",
+      "git_mode": "100644",
+      "blob_sha": "58a5eccf2585def73e4b8567be8e62f968f5c634",
+      "bytes": 347
+    },
+    {
+      "path": "app/services/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "d2833351055ef6e14cf5d2fa16d4920f8b12ec9a",
+      "bytes": 207
+    },
+    {
+      "path": "app/services/alarm_service.py",
+      "git_mode": "100644",
+      "blob_sha": "00ead12d4da25940053ba0a06d1e3e1c72966c60",
+      "bytes": 2140
+    },
+    {
+      "path": "app/services/algorithm_test_service.py",
+      "git_mode": "100644",
+      "blob_sha": "3819add240f8b8b3a7b0d18158f71b93917e8a30",
+      "bytes": 29528
+    },
+    {
+      "path": "app/services/cross_camera_service.py",
+      "git_mode": "100644",
+      "blob_sha": "e86ae866e722b8f100005ef768037675f64b9f96",
+      "bytes": 2228
+    },
+    {
+      "path": "app/services/onvif_discovery.py",
+      "git_mode": "100644",
+      "blob_sha": "12c22db91d6e6f021392df04572367b08b6cfdf2",
+      "bytes": 4008
+    },
+    {
+      "path": "app/tests.py",
+      "git_mode": "100644",
+      "blob_sha": "d615637a4b1a2e83727f0cc2ad3f54eec01e28cb",
+      "bytes": 240
+    },
+    {
+      "path": "app/urls.py",
+      "git_mode": "100644",
+      "blob_sha": "0162e567df87f3d2a9b15fe2cbb8ad4687dea82e",
+      "bytes": 9237
+    },
+    {
+      "path": "app/utils/Config.py",
+      "git_mode": "100644",
+      "blob_sha": "d2c9434e17f2c880c47e749f54731e89f96f5199",
+      "bytes": 11046
+    },
+    {
+      "path": "app/utils/Database.py",
+      "git_mode": "100644",
+      "blob_sha": "f071381accffd40c338bde8728d971addf09e21f",
+      "bytes": 1419
+    },
+    {
+      "path": "app/utils/GB28181SipServer.py",
+      "git_mode": "100644",
+      "blob_sha": "aec8f5d322972789d067d1bbf410edde446f250e",
+      "bytes": 141714
+    },
+    {
+      "path": "app/utils/GlobalUtils.py",
+      "git_mode": "100644",
+      "blob_sha": "e1acb56f68ef46130342154c0a8453f60cf5f145",
+      "bytes": 14149
+    },
+    {
+      "path": "app/utils/GpuInfo.py",
+      "git_mode": "100644",
+      "blob_sha": "b9d38d8355f45d8285c5927636dc3828777edfeb",
+      "bytes": 15285
+    },
+    {
+      "path": "app/utils/LLMUtils.py",
+      "git_mode": "100644",
+      "blob_sha": "526cb921a999eec14a7cfed3f0b8e58417b700f9",
+      "bytes": 1645
+    },
+    {
+      "path": "app/utils/LanguageUtils.py",
+      "git_mode": "100644",
+      "blob_sha": "a1c0cd4764c003685c4ef36af53147a8ceec7e88",
+      "bytes": 4920
+    },
+    {
+      "path": "app/utils/LogUtils.py",
+      "git_mode": "100644",
+      "blob_sha": "7dc8e91c5155c8b6a54d126f75967fe48cd876d8",
+      "bytes": 1831
+    },
+    {
+      "path": "app/utils/Logger.py",
+      "git_mode": "100644",
+      "blob_sha": "25e7d4b80d8541226420ebd6089a3013611e13e0",
+      "bytes": 1767
+    },
+    {
+      "path": "app/utils/MediaServerManager.py",
+      "git_mode": "100644",
+      "blob_sha": "be81d6c4beb5fe2af0c50c953cc95b6ea54e8f59",
+      "bytes": 4838
+    },
+    {
+      "path": "app/utils/OSSystem.py",
+      "git_mode": "100644",
+      "blob_sha": "eba4e80676aa543c02d1d25189d4cb72c63a84ed",
+      "bytes": 16636
+    },
+    {
+      "path": "app/utils/UploadUtils.py",
+      "git_mode": "100644",
+      "blob_sha": "d3cf5ce9511af0140c2d54ac1eb025261867c68b",
+      "bytes": 3725
+    },
+    {
+      "path": "app/utils/Utils.py",
+      "git_mode": "100644",
+      "blob_sha": "fff4c8bc3f6e2efa06ad946f5272f7bf1fe04dd4",
+      "bytes": 3628
+    },
+    {
+      "path": "app/utils/ZLMediaKitApi.py",
+      "git_mode": "100644",
+      "blob_sha": "23910cf6dc1c4e64064368fa598cba25f431d58b",
+      "bytes": 22759
+    },
+    {
+      "path": "app/utils/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "788de89e3c1cee9ce87da99059ba75d2afcab766",
+      "bytes": 180
+    },
+    {
+      "path": "app/utils/schema_upgrade.py",
+      "git_mode": "100644",
+      "blob_sha": "8bfe01ca0665ae91a117109a3a3a661cb68e854a",
+      "bytes": 1517
+    },
+    {
+      "path": "app/views/AlarmView.py",
+      "git_mode": "100644",
+      "blob_sha": "7d944a9412b418b6ba60abdb8eab675fd8cf47b5",
+      "bytes": 4250
+    },
+    {
+      "path": "app/views/AlgorithmView.py",
+      "git_mode": "100644",
+      "blob_sha": "fa7ed2636d67c3a8674e94115d3a8ba6e9c8f3ad",
+      "bytes": 23437
+    },
+    {
+      "path": "app/views/AnalysisView.py",
+      "git_mode": "100644",
+      "blob_sha": "d19890427fdd5dd7704741ef4c4e5889bb1c70cc",
+      "bytes": 17219
+    },
+    {
+      "path": "app/views/ControlView.py",
+      "git_mode": "100644",
+      "blob_sha": "c3a7d6cd2e30e62229a93539649e918b846b653f",
+      "bytes": 27794
+    },
+    {
+      "path": "app/views/IndexView.py",
+      "git_mode": "100644",
+      "blob_sha": "b3245d3514e7817a0e6ba12b496519ee0bc97163",
+      "bytes": 5348
+    },
+    {
+      "path": "app/views/InnerlView.py",
+      "git_mode": "100644",
+      "blob_sha": "cb804a0cffe25c6ed998b7243c7f89bf071cae31",
+      "bytes": 12513
+    },
+    {
+      "path": "app/views/LLMView.py",
+      "git_mode": "100644",
+      "blob_sha": "44b58db910d545a2fba255235c918864c09005c6",
+      "bytes": 12731
+    },
+    {
+      "path": "app/views/NvrView.py",
+      "git_mode": "100644",
+      "blob_sha": "f72758662697d6de90f08bf1998354cd3d91ad66",
+      "bytes": 14336
+    },
+    {
+      "path": "app/views/SmallModelView.py",
+      "git_mode": "100644",
+      "blob_sha": "9469e13e85a2efc69bb5cec4e55ea538a21da6f4",
+      "bytes": 32080
+    },
+    {
+      "path": "app/views/StorageView.py",
+      "git_mode": "100644",
+      "blob_sha": "9532d1950dfd4d7973fdb7ff9411a282e998a5ce",
+      "bytes": 3792
+    },
+    {
+      "path": "app/views/StreamView.py",
+      "git_mode": "100644",
+      "blob_sha": "40a69b4f24b95b12edce39fb1dc8c4124cee1c1f",
+      "bytes": 50895
+    },
+    {
+      "path": "app/views/SystemView.py",
+      "git_mode": "100644",
+      "blob_sha": "5184f51cd33f035109604c1da882bb88bef5e0f8",
+      "bytes": 13131
+    },
+    {
+      "path": "app/views/UserView.py",
+      "git_mode": "100644",
+      "blob_sha": "d12e43d208903b6c801a938c54b15492836f4c5b",
+      "bytes": 22625
+    },
+    {
+      "path": "app/views/VersionView.py",
+      "git_mode": "100644",
+      "blob_sha": "c8f12bec66f7be0e4c369746e7ef5ca8927addf2",
+      "bytes": 1995
+    },
+    {
+      "path": "app/views/ViewsBase.py",
+      "git_mode": "100644",
+      "blob_sha": "459cb833369a20163090e90c8cc14221e395e005",
+      "bytes": 4093
+    },
+    {
+      "path": "app/views/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "788de89e3c1cee9ce87da99059ba75d2afcab766",
+      "bytes": 180
+    },
+    {
+      "path": "config.json",
+      "git_mode": "100644",
+      "blob_sha": "9d352a87db59cd4827257a21be8ff0edd4714f45",
+      "bytes": 1513
+    },
+    {
+      "path": "framework/__init__.py",
+      "git_mode": "100644",
+      "blob_sha": "788de89e3c1cee9ce87da99059ba75d2afcab766",
+      "bytes": 180
+    },
+    {
+      "path": "framework/asgi.py",
+      "git_mode": "100644",
+      "blob_sha": "ec97c701d983df9448d894d0ba6f4ebb277669cc",
+      "bytes": 575
+    },
+    {
+      "path": "framework/settings.py",
+      "git_mode": "100644",
+      "blob_sha": "1dd8b7b0ba7ec4c41a15f478a893672bc64987ef",
+      "bytes": 5069
+    },
+    {
+      "path": "framework/urls.py",
+      "git_mode": "100644",
+      "blob_sha": "7d19cbe9c689586a921f0bad29ec63e2b7f90dfa",
+      "bytes": 1403
+    },
+    {
+      "path": "framework/wsgi.py",
+      "git_mode": "100644",
+      "blob_sha": "5eea9a64a3095ef2f88b34934ec20fd9d9c32c5b",
+      "bytes": 575
+    },
+    {
+      "path": "language-en.json",
+      "git_mode": "100644",
+      "blob_sha": "f1c9a3f8329a365d351c868350e3b66dc6006cf8",
+      "bytes": 57983
+    },
+    {
+      "path": "language-es.json",
+      "git_mode": "100644",
+      "blob_sha": "614d401a1a04174852da30c7111edb949fc3201b",
+      "bytes": 62503
+    },
+    {
+      "path": "language-ko.json",
+      "git_mode": "100644",
+      "blob_sha": "32298783c0d742cbf142f01b3a6b71b437b61688",
+      "bytes": 62560
+    },
+    {
+      "path": "language-ru.json",
+      "git_mode": "100644",
+      "blob_sha": "9ccce2dcfeeed18b9dc5d5163c0de2c4662a5246",
+      "bytes": 73774
+    },
+    {
+      "path": "language-vi.json",
+      "git_mode": "100644",
+      "blob_sha": "29bfd1cfb10f323ac00f9daa880a30dd9207a294",
+      "bytes": 64976
+    },
+    {
+      "path": "language-zh-hk.json",
+      "git_mode": "100644",
+      "blob_sha": "2c7226dceff6620c7d887fff6718c552aea64acc",
+      "bytes": 57858
+    },
+    {
+      "path": "language-zh.json",
+      "git_mode": "100644",
+      "blob_sha": "b5ce6e62ae9507f62c862f9a501d0a3429533560",
+      "bytes": 58159
+    },
+    {
+      "path": "logo.png",
+      "git_mode": "100644",
+      "blob_sha": "1f1ef39281757d76d9ade05317c8f7a3af9a375c",
+      "bytes": 17505
+    },
+    {
+      "path": "manage.py",
+      "git_mode": "100644",
+      "blob_sha": "b710acd2016b0f4e1722686725438f7a28629065",
+      "bytes": 846
+    },
+    {
+      "path": "manage.spec",
+      "git_mode": "100644",
+      "blob_sha": "b7c677bc1cf8b3a6238cb03ee2556595d589bc92",
+      "bytes": 1188
+    },
+    {
+      "path": "rebucca.sqlite3",
+      "git_mode": "100644",
+      "blob_sha": "6828e2bdbb25d6c3e8c56741c2622911363dce8f",
+      "bytes": 1826816
+    },
+    {
+      "path": "requirements-linux.txt",
+      "git_mode": "100644",
+      "blob_sha": "113ee1304550b30eb1a2abae8e0cd357afd49b39",
+      "bytes": 522
+    },
+    {
+      "path": "requirements-windows.txt",
+      "git_mode": "100644",
+      "blob_sha": "a418ffb192721a6712672c1bdf7fde36f6401aae",
+      "bytes": 287
+    },
+    {
+      "path": "settings.json",
+      "git_mode": "100644",
+      "blob_sha": "f195835c6bd5e15c7f056c604f7e721f0aaeb3cf",
+      "bytes": 3755
+    },
+    {
+      "path": "static/fonts/tsimhei.ttf",
+      "git_mode": "100644",
+      "blob_sha": "29eed0617c40ff856a0a2d2cc1c8869f1c53518e",
+      "bytes": 9737560
+    },
+    {
+      "path": "static/images/720p.jpg",
+      "git_mode": "100644",
+      "blob_sha": "e6cb0527a756ec1c56450e062fe15e6ecf56a1c6",
+      "bytes": 6027
+    },
+    {
+      "path": "static/images/close.gif",
+      "git_mode": "100644",
+      "blob_sha": "3b335229244a719261ff7e97c22a93e5c10cbad1",
+      "bytes": 96
+    },
+    {
+      "path": "static/images/load.gif",
+      "git_mode": "100644",
+      "blob_sha": "9905dee8bda792b7fd359baf527e5d5b3f886f34",
+      "bytes": 5208
+    },
+    {
+      "path": "static/images/loading.gif",
+      "git_mode": "100644",
+      "blob_sha": "2e4f98c7c9f7cc3499b68dfc375d0684271fa41b",
+      "bytes": 30269
+    },
+    {
+      "path": "static/images/logo.png",
+      "git_mode": "100644",
+      "blob_sha": "1f1ef39281757d76d9ade05317c8f7a3af9a375c",
+      "bytes": 17505
+    },
+    {
+      "path": "static/images/player_poster.jpg",
+      "git_mode": "100644",
+      "blob_sha": "4b5f24da0a84371b37103ef3504d6ed4afeb783d",
+      "bytes": 36544
+    },
+    {
+      "path": "static/lib/css/style.css",
+      "git_mode": "100644",
+      "blob_sha": "0a860f45bbf7afd5ebd3ade059689bb37a7e789d",
+      "bytes": 35178
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-audio.js",
+      "git_mode": "100644",
+      "blob_sha": "30d8ebfe5e34ab146b9efa00812e5c7ce6287a44",
+      "bytes": 439856
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-audio.wasm",
+      "git_mode": "100644",
+      "blob_sha": "362b51ddbcc7ae8cfacbd4171fdb5fc15898b3d9",
+      "bytes": 443508
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-hard-not-wasm.js",
+      "git_mode": "100644",
+      "blob_sha": "f5607a9dfd78b8357855e8559efccb3878b2266f",
+      "bytes": 373007
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-hard.js",
+      "git_mode": "100644",
+      "blob_sha": "35d9cab99a139feb07e5e156eda13d21baa9e9e0",
+      "bytes": 439857
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt-worker.js",
+      "git_mode": "100644",
+      "blob_sha": "099015b2a63ed175ce6b32ab1b9def4c02ae286d",
+      "bytes": 123563
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt-worker.wasm",
+      "git_mode": "100644",
+      "blob_sha": "48d926e799c7f04c07d81ad904d313727acabf28",
+      "bytes": 1148800
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt-worker.worker.js",
+      "git_mode": "100644",
+      "blob_sha": "e916ed6a90e902b966f9d5902f409704a815d6d6",
+      "bytes": 2964
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-mt.js",
+      "git_mode": "100644",
+      "blob_sha": "ecce9776ea3d585938e67692d8796a08fe68bd8a",
+      "bytes": 515440
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt-worker.js",
+      "git_mode": "100644",
+      "blob_sha": "e16ad7eb10bff183c0f8349fb33293fd09dcf583",
+      "bytes": 68056
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt-worker.wasm",
+      "git_mode": "100644",
+      "blob_sha": "a9d3d4d0da8300c6c4be6fbf36a8d6931fc341b9",
+      "bytes": 1345773
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt-worker.worker.js",
+      "git_mode": "100644",
+      "blob_sha": "f1772308a195f02633a1b2b34abf503d28010ae0",
+      "bytes": 2826
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd-mt.js",
+      "git_mode": "100644",
+      "blob_sha": "101cf21efe81f9a1e1379cff540f00ca35d54019",
+      "bytes": 476509
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd.js",
+      "git_mode": "100644",
+      "blob_sha": "b0d651b46b3653d26e8014cc009bb8e54927bee9",
+      "bytes": 468866
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro-simd.wasm",
+      "git_mode": "100644",
+      "blob_sha": "4e43c94690ee1eeadbfef9f29dc22fb2c1adac5f",
+      "bytes": 1298433
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro.js",
+      "git_mode": "100644",
+      "blob_sha": "7a2f689f5d7cf8e2f20e93a83b8b8a74eb9de600",
+      "bytes": 506519
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-pro.wasm",
+      "git_mode": "100644",
+      "blob_sha": "c997680705a5ff9d84aa972ba4c25c1792014151",
+      "bytes": 1110396
+    },
+    {
+      "path": "static/lib/easyPlayer/js/decoder-snap.wasm",
+      "git_mode": "100644",
+      "blob_sha": "97b5631598604fcaa869c60006effa939eb994b6",
+      "bytes": 3034592
+    },
+    {
+      "path": "static/lib/easyPlayer/js/easyplayer-pro-multi.js",
+      "git_mode": "100644",
+      "blob_sha": "4358dbd3391d463235b744109d2fc497d27dd699",
+      "bytes": 3794295
+    },
+    {
+      "path": "static/lib/easyPlayer/js/easyplayer-pro-talk.js",
+      "git_mode": "100644",
+      "blob_sha": "c3fa3f2750e356c5803e73a24293de800d934ee6",
+      "bytes": 26735
+    },
+    {
+      "path": "static/lib/easyPlayer/js/easyplayer-pro.js",
+      "git_mode": "100644",
+      "blob_sha": "63d4725dccae29ad0345539644cc0ed490aa214c",
+      "bytes": 2753676
+    },
+    {
+      "path": "static/lib/js/app.js",
+      "git_mode": "100644",
+      "blob_sha": "5703bdbf343377a8549845e526346430dd3a7ef0",
+      "bytes": 15339
+    },
+    {
+      "path": "static/resource/streamTemplate.xlsx",
+      "git_mode": "100644",
+      "blob_sha": "04f0f2adff4b7dcd270ea83b4cb351ae1107df6d",
+      "bytes": 9366
+    },
+    {
+      "path": "static/upload/weight/20260705130932_yolo11n.pt",
+      "git_mode": "100644",
+      "blob_sha": "45b273b46165267f2d4c90df94468b547f43cf67",
+      "bytes": 5613764
+    },
+    {
+      "path": "static/upload/weight/20260705205352_yolo11n.bin",
+      "git_mode": "100644",
+      "blob_sha": "262139efb7352a40e822491e74ae837176d54cad",
+      "bytes": 10566076
+    },
+    {
+      "path": "static/upload/weight/20260705205352_yolo11n.onnx",
+      "git_mode": "100644",
+      "blob_sha": "0d8e9c3b8354e4cea8ef56c306533076d2ac8230",
+      "bytes": 10720167
+    },
+    {
+      "path": "static/upload/weight/20260705205352_yolo11n.xml",
+      "git_mode": "100644",
+      "blob_sha": "b0497c0bdddf2525c477aaee21738c2b619e1e57",
+      "bytes": 315370
+    },
+    {
+      "path": "templates/app/alarm/dashboard.html",
+      "git_mode": "100644",
+      "blob_sha": "025126974182dfdaf52708ac2eea988d4cbd6064",
+      "bytes": 13420
+    },
+    {
+      "path": "templates/app/alarm/index.html",
+      "git_mode": "100644",
+      "blob_sha": "ec77b636c096dbfc1482141cc74a87da281e0144",
+      "bytes": 18494
+    },
+    {
+      "path": "templates/app/algorithm/index.html",
+      "git_mode": "100644",
+      "blob_sha": "ba150d66f5df0bb95dcf8cacfa20694bd1b59de2",
+      "bytes": 40969
+    },
+    {
+      "path": "templates/app/algorithm/test.html",
+      "git_mode": "100644",
+      "blob_sha": "0c3bd6b790686e55aa1e60dae6147b0cde17d223",
+      "bytes": 20600
+    },
+    {
+      "path": "templates/app/base.html",
+      "git_mode": "100644",
+      "blob_sha": "012718a10d899b9b4e41d17e7e8a79e2b183b53b",
+      "bytes": 12297
+    },
+    {
+      "path": "templates/app/control/index.html",
+      "git_mode": "100644",
+      "blob_sha": "ffb4828606315ec146b6935ab957c82da091d149",
+      "bytes": 97265
+    },
+    {
+      "path": "templates/app/forbidden.html",
+      "git_mode": "100644",
+      "blob_sha": "0e90aac9e6acdc8997096f0b7900e3b479090779",
+      "bytes": 1140
+    },
+    {
+      "path": "templates/app/index.html",
+      "git_mode": "100644",
+      "blob_sha": "07cdc1c123e0aa21efe3b6aa2252a11723201032",
+      "bytes": 24572
+    },
+    {
+      "path": "templates/app/llm/index.html",
+      "git_mode": "100644",
+      "blob_sha": "47b6a88c13feb981da019ed9184edaf9a51bf53a",
+      "bytes": 17478
+    },
+    {
+      "path": "templates/app/llm/test.html",
+      "git_mode": "100644",
+      "blob_sha": "8eb950af089b6f716a209c5b30b6a6ab27f8ffda",
+      "bytes": 11607
+    },
+    {
+      "path": "templates/app/record/index.html",
+      "git_mode": "100644",
+      "blob_sha": "ead5302392107ce0c5f52cabf5d31f57f514940d",
+      "bytes": 9446
+    },
+    {
+      "path": "templates/app/setup/index.html",
+      "git_mode": "100644",
+      "blob_sha": "fd31e6a6b363a7beca9c8e7179b0dd63634d9d74",
+      "bytes": 1947
+    },
+    {
+      "path": "templates/app/smallmodel/index.html",
+      "git_mode": "100644",
+      "blob_sha": "97817d8da407afc64f9497343bd60b15f00518e4",
+      "bytes": 38964
+    },
+    {
+      "path": "templates/app/smallmodel/test.html",
+      "git_mode": "100644",
+      "blob_sha": "8ef805ad350bb57e741e207c628a43455116c7e6",
+      "bytes": 28073
+    },
+    {
+      "path": "templates/app/stream/index.html",
+      "git_mode": "100644",
+      "blob_sha": "e3a7fe2635f37d30485d357f403d95da7f8e9783",
+      "bytes": 47422
+    },
+    {
+      "path": "templates/app/stream/online.html",
+      "git_mode": "100644",
+      "blob_sha": "95e12c9c494b3b1e3e0749b887393916967087e9",
+      "bytes": 11739
+    },
+    {
+      "path": "templates/app/stream/player.html",
+      "git_mode": "100644",
+      "blob_sha": "5b22f87a2619c56b9217518c0e3da62a4ae422eb",
+      "bytes": 12945
+    },
+    {
+      "path": "templates/app/system/config.html",
+      "git_mode": "100644",
+      "blob_sha": "83d9b306fdb8ecc22052de6c94c64ddfae34b23b",
+      "bytes": 42321
+    },
+    {
+      "path": "templates/app/user/index.html",
+      "git_mode": "100644",
+      "blob_sha": "dab4e8f4c5402d1745af235cfd36ee06a4d5f9ff",
+      "bytes": 11438
+    },
+    {
+      "path": "templates/app/user/login.html",
+      "git_mode": "100644",
+      "blob_sha": "3186a2524e2ce66bae1cf10de56726dbf54a08f9",
+      "bytes": 9165
+    },
+    {
+      "path": "templates/app/version/index.html",
+      "git_mode": "100644",
+      "blob_sha": "6f26db3625ed70a59a9e24354799306a189b24e6",
+      "bytes": 10033
+    },
+    {
+      "path": "zlm/.gitignore",
+      "git_mode": "100644",
+      "blob_sha": "abb76eafeddfd3ad6d908e7953842e1a628f8010",
+      "bytes": 113
+    },
+    {
+      "path": "zlm/THIRD_PARTY_LICENSES",
+      "git_mode": "100644",
+      "blob_sha": "529d9848ddde1e4a194f923b566a6bb812779d9f",
+      "bytes": 571
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/config.ini",
+      "git_mode": "100644",
+      "blob_sha": "6f57233df3dc28dc16bf055962695fbbbddfc341",
+      "bytes": 3404
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/libcrypto.so.1.1",
+      "git_mode": "100644",
+      "blob_sha": "db07ce58331e112c91ceaaa4c561b55b26c27d57",
+      "bytes": 2612960
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/libsrtp2.so.1",
+      "git_mode": "100644",
+      "blob_sha": "ea328843579185708ec12e3cf43d51da28a92da8",
+      "bytes": 112864
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/libssl.so.1.1",
+      "git_mode": "100644",
+      "blob_sha": "a71e2240b5530cd98bd282391f1a26697a624055",
+      "bytes": 564864
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/rebucca_zlm",
+      "git_mode": "100644",
+      "blob_sha": "97ad873a86b4f0744bde7565cb319672e6e77a2c",
+      "bytes": 10489744
+    },
+    {
+      "path": "zlm/bin.arm.gcc9.4/version.txt",
+      "git_mode": "100644",
+      "blob_sha": "ddde1afb147f988aefc87213ab9dd9b30a545108",
+      "bytes": 35
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/config.ini",
+      "git_mode": "100644",
+      "blob_sha": "6f57233df3dc28dc16bf055962695fbbbddfc341",
+      "bytes": 3404
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/libcrypto.so.1.1",
+      "git_mode": "100644",
+      "blob_sha": "ac4a64207a4f3746beb96a3abaf1f6211706823c",
+      "bytes": 2958176
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/libsrtp2.so.1",
+      "git_mode": "100644",
+      "blob_sha": "46f80154b04f26099f145684b9eb4e59ea440f10",
+      "bytes": 121288
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/libssl.so.1.1",
+      "git_mode": "100644",
+      "blob_sha": "51fcd51342bdf6ce5c87d426485503419a974414",
+      "bytes": 598104
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/rebucca_zlm",
+      "git_mode": "100644",
+      "blob_sha": "ab28a6069ab332eca895869be0f5160e5c665b14",
+      "bytes": 10968720
+    },
+    {
+      "path": "zlm/bin.x86.gcc9.4/version.txt",
+      "git_mode": "100644",
+      "blob_sha": "ddde1afb147f988aefc87213ab9dd9b30a545108",
+      "bytes": 35
+    },
+    {
+      "path": "zlm/bin.x86.windows10/config.ini",
+      "git_mode": "100644",
+      "blob_sha": "6f57233df3dc28dc16bf055962695fbbbddfc341",
+      "bytes": 3404
+    },
+    {
+      "path": "zlm/bin.x86.windows10/rebucca_zlm.exe",
+      "git_mode": "100644",
+      "blob_sha": "8b18e42dfabfc91cc2f9604dc60986a1c7567c9f",
+      "bytes": 10028544
+    },
+    {
+      "path": "zlm/bin.x86.windows10/version.txt",
+      "git_mode": "100644",
+      "blob_sha": "ffb49d0a7f3d1302d66ee3efa77539d41900e864",
+      "bytes": 116
+    }
+  ]
+}
