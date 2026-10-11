@@ -1,0 +1,32 @@
+{
+  "candidate_sha": "b18f24f4abed762932daf962736b5181cb67b7e4",
+  "status": "FAIL",
+  "container_exit_code": 1,
+  "tests": {
+    "run": 51,
+    "passed": 48,
+    "failures": 1,
+    "errors": 2,
+    "skipped": 0
+  },
+  "log": "tests-b18f.log",
+  "log_sha256": "a43e9ad8e3b6eef1c9e1a22d3faed41a7083d8c8b358c13a3fd20e0604b59bd6",
+  "observed_failures": [
+    {
+      "tests": [
+        "ExecutorAndSenderTests.test_capture_uses_argv_without_shell_and_atomic_cache",
+        "ExecutorAndSenderTests.test_failure_and_timeout_keep_old_cache_and_clean_temp"
+      ],
+      "cause": "fake executable in /tmp is not executable under noexec; production trusted-path check correctly failed closed",
+      "correction": "use installed Python executable metadata for mocked subprocess test; retain noexec"
+    },
+    {
+      "test": "SyntheticVideoTests.test_real_ffmpeg_synthetic_rtsp_snapshot",
+      "cause": "actual RTSP FFmpeg demuxer rejected -rw_timeout: Option rw_timeout not found",
+      "correction": "use supported -timeout 5000000; socket timeout checked with actual FFmpeg CLI and synthetic RTSP"
+    }
+  ],
+  "corrected_code_sha": "21ded3072827a77703824ca2692d00e453e3c4b6",
+  "corrected_full_suite": "docker-results.json",
+  "gate": "initial failure retained; only corrected fixed code received isolated PASS"
+}

@@ -14,6 +14,10 @@ from app.utils.Utils import buildPageLabels
 from app.utils.LanguageUtils import LANG_VIEWS_T
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.conf import settings
+from django.contrib.auth.models import User
+from app.security import stream_component, private_directory
+from app.snapshot import capture_jpeg, local_rtsp_url, read_jpeg, snapshot_lock
 
 
 def record_index(request):
@@ -296,64 +300,76 @@ def api_openSnapShot(request):
 
 
 def _snap_http_response(data, status=200):
+    """私有JPEG不进入共享/浏览器缓存。"""
     resp = HttpResponse(data, content_type="image/jpeg", status=status)
     resp["Cache-Control"] = "no-store"
     return resp
 
 
 def _capture_snap_file(rtsp_url, snap_path, ffmpeg_cmd):
-    if os.path.exists(snap_path):
-        try:
-            os.remove(snap_path)
-        except Exception:
-            pass
-    command = '"{ffmpeg}" -loglevel quiet -rtsp_transport tcp -stimeout 5000000 -i "{rtsp_url}" -frames:v 1 -y "{snap_path}"'.format(
-        ffmpeg=ffmpeg_cmd, rtsp_url=rtsp_url, snap_path=snap_path)
-    subprocess.run(command, shell=True, timeout=12, capture_output=True)
-    if os.path.exists(snap_path):
-        with open(snap_path, "rb") as f:
-            data = f.read()
-        if len(data) > 100:
-            return data
-    return None
+    """保留内部调用入口，安全执行由无后台依赖的快照模块完成。"""
+    return capture_jpeg(rtsp_url, snap_path, ffmpeg_cmd)
+
+
+def _snap_error(message, status):
+    """错误不泄露命令、路径、网络地址或数据库异常。"""
+    response = HttpResponse(message.encode("utf-8"), status=status, content_type="text/plain")
+    response["Cache-Control"] = "no-store"
+    return response
 
 
 def api_openSnap(request):
+    """有效登录者经数据库对象授权后才能读取/刷新快照，包括缓存命中。"""
+    if request.method != "GET":
+        response = _snap_error("GET required", 405)
+        response["Allow"] = "GET"
+        return response
     try:
-        params = f_parseGetParams(request)
-        app = params.get("app", "").strip()
-        name = params.get("name", "").strip()
-        force = str(params.get("force", "0")).strip() == "1"
-        if not app or not name:
-            return HttpResponse(b"missing app or name", status=400, content_type="text/plain")
-        snap_dir = os.path.join(g_config.storageDir, "snapshots")
-        safe_app = "".join(c for c in app if c.isalnum() or c in ("_", "-", "."))
-        safe_name = "".join(c for c in name if c.isalnum() or c in ("_", "-", "."))
-        if not safe_app or not safe_name:
-            safe_app = app.replace("/", "_").replace("\\", "_")
-            safe_name = name.replace("/", "_").replace("\\", "_")
-        snap_path = os.path.join(snap_dir, "%s_%s.jpg" % (safe_app, safe_name))
-        if not force and os.path.exists(snap_path):
-            mtime = os.path.getmtime(snap_path)
-            if (time.time() - mtime) < 30:
-                with open(snap_path, "rb") as f:
-                    data = f.read()
-                if len(data) > 100:
+        info = request.session.get("user")
+        uid = info.get("id") if isinstance(info, dict) else None
+        if isinstance(uid, bool) or not isinstance(uid, int) or uid <= 0:
+            return _snap_error("login required", 401)
+        # 不信任会话内的is_superuser标记；撤销角色/停用账户立即影响新请求。
+        user = User.objects.filter(id=uid, is_active=True).first()
+        if not user:
+            return _snap_error("login required", 401)
+        if any(len(request.GET.getlist(k)) != 1 for k in ("app", "name")):
+            return _snap_error("invalid snapshot parameters", 400)
+        if len(request.GET.getlist("force")) > 1 or request.GET.get("force", "0") not in ("0", "1"):
+            return _snap_error("invalid snapshot parameters", 400)
+        app = stream_component(request.GET.get("app"))
+        name = stream_component(request.GET.get("name"))
+        force = request.GET.get("force", "0") == "1"
+        from app.models import StreamModel
+        streams = list(StreamModel.objects.filter(app=app, name=name)[:2])
+        if not streams:
+            return _snap_error("stream not found", 404)
+        if len(streams) != 1:
+            return _snap_error("ambiguous stream", 409)
+        stream = streams[0]
+        if not user.is_superuser and stream.user_id != user.id:
+            return _snap_error("stream access denied", 403)
+        snap_dir = private_directory(settings.REBUCCA_SNAPSHOT_DIR)
+        snap_path = snap_dir / ("stream-%d.jpg" % stream.id)
+        with snapshot_lock(snap_dir / ("stream-%d.lock" % stream.id)) as acquired:
+            if not acquired:
+                return _snap_error("snapshot busy", 429)
+            if not force and snap_path.exists() and 0 <= time.time() - snap_path.stat().st_mtime < 30:
+                data = read_jpeg(snap_path)
+                if data:
                     return _snap_http_response(data)
-        rtsp_url = g_zlm.get_rtspUrl(app=app, name=name, request_ip="127.0.0.1")
-        if not rtsp_url:
-            return HttpResponse(b"no stream url available", status=404, content_type="text/plain")
-        os.makedirs(snap_dir, exist_ok=True)
-        ffmpeg_cmd = g_config.ffmpeg
-        data = _capture_snap_file(rtsp_url, snap_path, ffmpeg_cmd)
-        if not data:
-            # RTSP 首帧可能较慢，短暂等待后重试一次
-            time.sleep(0.6)
-            data = _capture_snap_file(rtsp_url, snap_path, ffmpeg_cmd)
-        if data:
-            return _snap_http_response(data)
-        return HttpResponse(b"snap failed", status=404, content_type="text/plain")
+            rtsp_url = local_rtsp_url(stream.app, stream.name, g_config.mediaRtspPort)
+            data = _capture_snap_file(rtsp_url, snap_path, settings.REBUCCA_FFMPEG_PATH)
+            if not data:
+                # 正常首帧延迟最多重试一次；timeout不会沿用旧缓存或无限重试。
+                time.sleep(0.6)
+                data = _capture_snap_file(rtsp_url, snap_path, settings.REBUCCA_FFMPEG_PATH)
+            if data:
+                return _snap_http_response(data)
+            return _snap_error("snapshot unavailable", 502)
+    except (ValueError, TypeError):
+        return _snap_error("invalid snapshot input or configuration", 400)
     except subprocess.TimeoutExpired:
-        return HttpResponse(b"snap timeout", status=404, content_type="text/plain")
-    except Exception as e:
-        return HttpResponse(("snap exception: " + str(e)).encode("utf-8"), status=500, content_type="text/plain")
+        return _snap_error("snapshot timeout", 504)
+    except Exception:
+        return _snap_error("snapshot unavailable", 500)

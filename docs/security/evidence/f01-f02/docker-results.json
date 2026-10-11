@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "candidate_sha": "21ded3072827a77703824ca2692d00e453e3c4b6",
+  "build_exit_code": 0,
+  "container_state": {
+    "Status": "exited",
+    "Running": false,
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "StartedAt": "2026-10-11T01:57:55.149272641Z",
+    "FinishedAt": "2026-10-11T01:58:02.594964373Z"
+  },
+  "image": {
+    "id": "sha256:490f0bbdfd1e3af2e07a96534d0f41f2a30539c64e4acfc992bf4cf73a65ef95",
+    "created": "2026-10-11T01:57:31.322886263Z",
+    "os": "linux",
+    "architecture": "amd64",
+    "repo_digests": [
+      "yy-rebucca-security@sha256:490f0bbdfd1e3af2e07a96534d0f41f2a30539c64e4acfc992bf4cf73a65ef95"
+    ]
+  },
+  "container_command": [
+    "python",
+    "-m",
+    "tests.run_security"
+  ],
+  "runtime": {
+    "server_version": "29.7.2",
+    "os_type": "linux",
+    "architecture": "x86_64",
+    "operating_system": "Docker Desktop",
+    "kernel_version": "7.0.12-linuxkit"
+  },
+  "boundaries": {
+    "user": "65534:65534",
+    "network_mode": "none",
+    "read_only_rootfs": true,
+    "privileged": false,
+    "cap_add": null,
+    "cap_drop": [
+      "ALL"
+    ],
+    "security_opt": [
+      "no-new-privileges"
+    ],
+    "tmpfs": {
+      "/tmp": "rw,noexec,nosuid,size=64m"
+    },
+    "pids_limit": 128,
+    "nano_cpus": 2000000000,
+    "memory_bytes": 536870912,
+    "port_bindings": {},
+    "ports": {},
+    "host_mounts": []
+  },
+  "tests": {
+    "run": 51,
+    "passed": 51,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 6.437,
+    "real_ffmpeg_synthetic_rtsp": "PASS",
+    "fixture": "loopback short-lived H264 synthetic160x120; not native ZLM/camera"
+  },
+  "scope": "real Django test Client/views/middleware/ORM + real isolated FFmpeg RTSP/TCP; GlobalUtils and external SIP mocked",
+  "real_service_validation": "NOT_RUN (native ZLM/SIP, full app HTTP lifecycle, Windows, production cameras/DB)",
+  "independent_review": "NOT_RUN",
+  "production_security": "FAIL",
+  "artifact_sha256": {
+    "tests-21ded30.log": "867689122870dffc19d8d1f53f399e3cbc122f11eee7330a58eb20084a4eae2d",
+    "runtime-21ded30.log": "4748727f3ad77fa754cda41abdd34f64c636df6821fdaceda12f842d92ceb7d6",
+    "build-corrected.log": "674a3f69a4411c39b310be071ff911e47087cec9fdc0cffee615ab51771d738b",
+    "tests-b18f.log": "a43e9ad8e3b6eef1c9e1a22d3faed41a7083d8c8b358c13a3fd20e0604b59bd6"
+  },
+  "cleanup": {
+    "test_container_removed": true,
+    "test_processes_exited": true,
+    "persistent_product_service_started": false,
+    "evidence_and_test_image_retained_for_reproduction": true
+  }
+}

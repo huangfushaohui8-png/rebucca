@@ -1,8 +1,8 @@
-# 东方宇阳 Rebucca 引入审计 — 任务
+# 东方宇阳 Rebucca — 任务
 
-版本：1.0.1｜日期：2026-10-04｜状态：本期引入与审计材料已交付
+版本：1.1.1｜日期：2026-10-11｜状态：历史审计和本轮局部修复已保存；真实服务/生产未验收
 
-依次核验来源、审计、部署设计和远程交付。任务完成指本期材料完成；漏洞整改、真实摄像头、模型效果及生产上线尚不在执行状态。
+T-001～T-004 保留 2026-10-04 引入审计交付；T-005～T-008 记录本轮 F01/F02 代码、隔离验证与 Draft PR。done 仅指约定的局部交付，真实组件、独立复核和生产上线未验收。
 
 <!-- engineering-meta -->
 ```json
@@ -11,10 +11,10 @@
   "kind": "task",
   "project_id": "yy-rebucca",
   "scope_id": "rebucca.adoption",
-  "doc_version": "1.0.1",
-  "spec_revision": 1,
-  "spec_doc_version": "1.0.0",
-  "spec_sha256": "e0762315f4b9d722a56dc310ba7b66bc2e014550532c44e926f900754792d53e",
+  "doc_version": "1.1.1",
+  "spec_revision": 2,
+  "spec_doc_version": "1.1.0",
+  "spec_sha256": "b06b744be6aa777429a989abbd128ef9822e26a1fbd403da01ee2cdf4e9f7060",
   "tasks": [
     {
       "id": "T-001",
@@ -95,6 +95,93 @@
         "docs/security/evidence/publication.json",
         "https://github.com/huangfushaohui8-png/rebucca/pull/1",
         "远程文件核验提交 3b3caaabeada0e38b9e9837c77f984927880c2b2"
+      ]
+    },
+    {
+      "id": "T-005",
+      "title": "补齐 F01/F02 模块契约",
+      "requirements": [
+        "R-005"
+      ],
+      "depends_on": [
+        "T-004"
+      ],
+      "owner": "百望侠",
+      "deliverable": "独立模块三文档、范围版本清单和权限定义",
+      "done_when": [
+        "对应模块条目满足预设判据并记录实际证据；T-008 只要求 Draft PR，不要求合并或生产上线"
+      ],
+      "status": "done",
+      "evidence": [
+        "engineering-scopes.json",
+        "docs/modules/snapshot/spec.md",
+        "docs/modules/callbacks/spec.md",
+        "docs/security/evidence/f01-f02/engineering-ready.json"
+      ]
+    },
+    {
+      "id": "T-006",
+      "title": "实现截图/回调及发送兼容",
+      "requirements": [
+        "R-005"
+      ],
+      "depends_on": [
+        "T-005"
+      ],
+      "owner": "百望侠",
+      "deliverable": "受影响源码与可复现隔离测试入口",
+      "done_when": [
+        "对应模块条目满足预设判据并记录实际证据；T-008 只要求 Draft PR，不要求合并或生产上线"
+      ],
+      "status": "done",
+      "evidence": [
+        "app/security.py",
+        "app/snapshot.py",
+        "app/views/NvrView.py",
+        "app/views/InnerlView.py",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
+    },
+    {
+      "id": "T-007",
+      "title": "隔离行为验证与证据",
+      "requirements": [
+        "R-005"
+      ],
+      "depends_on": [
+        "T-006"
+      ],
+      "owner": "百望侠",
+      "deliverable": "测试日志、提交/环境/边界记录",
+      "done_when": [
+        "对应模块条目满足预设判据并记录实际证据；T-008 只要求 Draft PR，不要求合并或生产上线"
+      ],
+      "status": "done",
+      "evidence": [
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/local-checks.json"
+      ]
+    },
+    {
+      "id": "T-008",
+      "title": "保存独立 Draft PR 和回退说明",
+      "requirements": [
+        "R-005"
+      ],
+      "depends_on": [
+        "T-007"
+      ],
+      "owner": "百望侠",
+      "deliverable": "固定提交、PR 及剩余门禁",
+      "done_when": [
+        "对应模块条目满足预设判据并记录实际证据；T-008 只要求 Draft PR，不要求合并或生产上线"
+      ],
+      "status": "done",
+      "evidence": [
+        "https://github.com/huangfushaohui8-png/rebucca/pull/2",
+        "docs/security/f01-f02-remediation.md",
+        "docs/security/evidence/f01-f02/review-summary.json"
       ]
     }
   ]

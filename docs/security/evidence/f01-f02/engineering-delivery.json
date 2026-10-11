@@ -1,0 +1,53 @@
+{
+  "fixed_code_sha": "21ded3072827a77703824ca2692d00e453e3c4b6",
+  "stage": "delivery",
+  "checks": {
+    "scope": {
+      "status": "PASS",
+      "stage": "delivery",
+      "project_id": "yy-rebucca",
+      "scopes_checked": 3,
+      "history_checked": true,
+      "errors": [],
+      "warnings": [],
+      "limit": "仅核验登记范围及提供的历史清单；不证明模块清单完整、业务正确、证据真实或 CI 已启用"
+    },
+    "root": {
+      "status": "PASS",
+      "stage": "delivery",
+      "counts": {
+        "requirements": 5,
+        "tasks": 8,
+        "tests": 5
+      },
+      "errors": [],
+      "warnings": [],
+      "limit": "仅检查文档结构与关联；不证明产品正确、证据真实或已运行产品测试"
+    },
+    "snapshot": {
+      "status": "PASS",
+      "stage": "delivery",
+      "counts": {
+        "requirements": 3,
+        "tasks": 2,
+        "tests": 3
+      },
+      "errors": [],
+      "warnings": [],
+      "limit": "仅检查文档结构与关联；不证明产品正确、证据真实或已运行产品测试"
+    },
+    "callbacks": {
+      "status": "PASS",
+      "stage": "delivery",
+      "counts": {
+        "requirements": 3,
+        "tasks": 2,
+        "tests": 3
+      },
+      "errors": [],
+      "warnings": [],
+      "limit": "仅检查文档结构与关联；不证明产品正确、证据真实或已运行产品测试"
+    }
+  },
+  "limit": "文档结构与版本关联通过；独立安全复核/真实服务仍NOT_RUN，生产FAIL"
+}

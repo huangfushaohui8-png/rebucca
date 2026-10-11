@@ -10,16 +10,68 @@
       "depends_on": [],
       "documents": {
         "spec.md": {
+          "doc_version": "1.1.0",
+          "sha256": "b06b744be6aa777429a989abbd128ef9822e26a1fbd403da01ee2cdf4e9f7060"
+        },
+        "task.md": {
+          "doc_version": "1.1.1",
+          "sha256": "d8faf7b671fe3730e911a5df9efac896c901d0b6f13b997ada65cc94f9b0c09b"
+        },
+        "test-spec.md": {
+          "doc_version": "1.1.1",
+          "sha256": "828dc69b8ba03b21398adee4116c07f124543e0a37b60a60ddc5845377248318"
+        }
+      }
+    },
+    {
+      "scope_id": "rebucca.snapshot",
+      "kind": "module",
+      "path": "docs/modules/snapshot",
+      "parent_scope_id": "rebucca.adoption",
+      "depends_on": [
+        {
+          "scope_id": "rebucca.adoption",
+          "spec_version": "1.1.0"
+        }
+      ],
+      "documents": {
+        "spec.md": {
           "doc_version": "1.0.0",
-          "sha256": "e0762315f4b9d722a56dc310ba7b66bc2e014550532c44e926f900754792d53e"
+          "sha256": "21e3b162452528781dce7a2d399057cd568248e706d557d1cf7595555b2b9d21"
         },
         "task.md": {
           "doc_version": "1.0.1",
-          "sha256": "72af3be58db2bf9627061a45069096b377a583cf9e151a04e09cf7e6d7065372"
+          "sha256": "8921094362ef74066e66e2366fbf79a8df564d70499712af0384587dfc9a2d74"
         },
         "test-spec.md": {
           "doc_version": "1.0.1",
-          "sha256": "1cc085c7095425be2b2c5d5030e7aab2e8221078199301d99267822db8e1b798"
+          "sha256": "8f2ce6ac032dbea7d10bcd767c84a42f432291b22f9e609046552184e125281e"
+        }
+      }
+    },
+    {
+      "scope_id": "rebucca.callbacks",
+      "kind": "module",
+      "path": "docs/modules/callbacks",
+      "parent_scope_id": "rebucca.adoption",
+      "depends_on": [
+        {
+          "scope_id": "rebucca.adoption",
+          "spec_version": "1.1.0"
+        }
+      ],
+      "documents": {
+        "spec.md": {
+          "doc_version": "1.0.0",
+          "sha256": "2b5ecb7900747e78639b278978c71e81cdd132a26b23c7778dced7d44301cfb2"
+        },
+        "task.md": {
+          "doc_version": "1.0.1",
+          "sha256": "1d87e27b5624903abd82536cf4c343882081535f0d933963f38a8fa38be38634"
+        },
+        "test-spec.md": {
+          "doc_version": "1.0.1",
+          "sha256": "a6237d96ebc4e28f9ced29911f56d6d624ca3780110590d79efb0aff36386ae2"
         }
       }
     }

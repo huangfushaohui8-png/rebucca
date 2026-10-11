@@ -1,0 +1,25 @@
+{
+  "fixed_code_sha": "21ded3072827a77703824ca2692d00e453e3c4b6",
+  "base_main_sha": "42a0e0baebf7d48cc7a752570386112ae1b6b394",
+  "draft_pr": "https://github.com/huangfushaohui8-png/rebucca/pull/2",
+  "original_audit": "docs/security-audit.md",
+  "original_failed_boundary_evidence": "docs/security/evidence/isolated-findings.json (F01-ANON-SNAP, F01-SHELL-DATAFLOW, F01-CACHED-IMAGE, F02-ANON-INNER, F02-DELETE-DATAFLOW)",
+  "verification_layers": {
+    "code_checks": "PASS: AST85 and author review; no repeated whole-product audit",
+    "local_django": "PASS 50, SKIP1 (synthetic RTSP reserved for container)",
+    "isolated_docker": "PASS 51/51, real FFmpeg synthetic RTSP frame",
+    "native_component_and_full_http_service": "NOT_RUN",
+    "independent_security_review": "NOT_RUN",
+    "production_security": "FAIL",
+    "production_deployment": "NOT_RUN"
+  },
+  "remaining_gates": [
+    "F03–F15 retained from original audit, including default credentials, roles, SQL, path, dependencies and external communications",
+    "F02 bearer replay prevention/signing, URL token access log discipline, secret lifecycle and separate internal listener remain unverified",
+    "native ZLM/SIP runtime config handshake and normal ingest, full application startup lifecycle",
+    "Windows trusted FFmpeg path and OS file lock",
+    "independent review before changing Draft status; no merge or deployment performed"
+  ],
+  "rollback": "docs/security/f01-f02-remediation.md#回退",
+  "data_scope": "generated secrets, synthetic accounts/video and new SQLite only; no production DB or camera"
+}
