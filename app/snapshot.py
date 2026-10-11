@@ -78,7 +78,7 @@ def capture_jpeg(rtsp_url, snap_path, ffmpeg_cmd):
     try:
         result = subprocess.run(
             [str(executable), "-nostdin", "-loglevel", "error", "-rtsp_transport", "tcp",
-             "-rw_timeout", "5000000", "-i", rtsp_url, "-frames:v", "1", "-f", "image2",
+             "-timeout", "5000000", "-i", rtsp_url, "-frames:v", "1", "-f", "image2",
              "-update", "1", "-y", temporary],
             shell=False, timeout=12, stdin=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False,

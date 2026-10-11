@@ -156,8 +156,10 @@ def _unique_json_object(pairs):
 def require_callback_service(service):
     """视图自身强制鉴权和有限JSON解析，中间件遗漏也不能绕过。"""
     def decorate(view):
+        """将选定服务身份固定绑定到该回调视图。"""
         @functools.wraps(view)
         def wrapped(request, *args, **kwargs):
+            """先拒绝越界请求，只有合法载荷才交给业务写入逻辑。"""
             error = authenticate_callback(request, service)
             if error is not None:
                 return error

@@ -4,6 +4,7 @@ import json
 import os
 import stat
 import subprocess
+import sys
 import tempfile
 import threading
 import time
@@ -408,9 +409,8 @@ class ExecutorAndSenderTests(TestCase):
     def test_capture_uses_argv_without_shell_and_atomic_cache(self):
         """检查实际进程入口传参并注入JPEG产物，验证发布/清理行为。"""
         with tempfile.TemporaryDirectory() as directory:
-            exe = Path(directory) / "ffmpeg"
-            exe.write_text("synthetic executable")
-            exe.chmod(0o700)
+            # /tmp在安全容器中是noexec；进程被替代时使用已安装可信路径，仍不执行它。
+            exe = Path(sys.executable)
             destination = Path(directory) / "camera.jpg"
             def synthetic_run(argv, **kwargs):
                 """独立预期：URL是单个参数，永不由shell解释。"""
@@ -428,9 +428,7 @@ class ExecutorAndSenderTests(TestCase):
     def test_failure_and_timeout_keep_old_cache_and_clean_temp(self):
         """失败不能返回/覆盖旧缓存，超时之后临时文件也清理。"""
         with tempfile.TemporaryDirectory() as directory:
-            exe = Path(directory) / "ffmpeg"
-            exe.write_text("synthetic executable")
-            exe.chmod(0o700)
+            exe = Path(sys.executable)
             destination = Path(directory) / "camera.jpg"
             destination.write_bytes(JPEG)
             with patch("app.snapshot.subprocess.run", return_value=SimpleNamespace(returncode=1)):
