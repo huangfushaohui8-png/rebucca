@@ -1,0 +1,156 @@
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 51 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: app
+  Apply all migrations: auth, contenttypes, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table av_stream
+    Creating table av_algorithm
+    Creating table av_biz_algorithm
+    Creating table av_zone
+    Creating table av_alarm
+    Creating table av_recording
+    Creating table av_llm
+    Creating table av_log
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_ambiguous_stream_code_cannot_delete_or_update (tests.test_security.CallbackTests.test_ambiguous_stream_code_cannot_delete_or_update)
+重复编号旧记录不能被服务回调静默选中并破坏。 ... InnerView.api_on_media_update_stream() res={'code': 0, 'msg': 'ambiguous stream code'}
+InnerView.api_on_media_delete_stream() res={'code': 0, 'msg': 'ambiguous stream code'}
+ok
+test_anonymous_all_four_callbacks_denied (tests.test_security.CallbackTests.test_anonymous_all_four_callbacks_denied)
+四个回调匿名访问均在写入/删除/邀请前拒绝。 ... ok
+test_forwarded_header_not_trusted (tests.test_security.CallbackTests.test_forwarded_header_not_trusted)
+代理来源声明不扩大回环许可。 ... ok
+test_invalid_update_fields_have_no_side_effect (tests.test_security.CallbackTests.test_invalid_update_fields_have_no_side_effect)
+异常参数不进入SQL、对象创建或设备控制。 ... ok
+test_ipv6_loopback_supported (tests.test_security.CallbackTests.test_ipv6_loopback_supported)
+真正IPv6回环保留兼容性。 ... ok
+test_json_type_size_content_type_and_syntax (tests.test_security.CallbackTests.test_json_type_size_content_type_and_syntax)
+回调解析边界在数据库变化之前执行。 ... ok
+test_missing_and_shared_secrets_fail_closed (tests.test_security.CallbackTests.test_missing_and_shared_secrets_fail_closed)
+缺失、无效长度和两服务共用secret一律不能退回旧Safe。 ... ok
+test_non_loopback_denied_even_with_token (tests.test_security.CallbackTests.test_non_loopback_denied_even_with_token)
+token泄露也不能从外部对端直接调用本轮入口。 ... ok
+test_not_found_invites_only_matching_gb_stream (tests.test_security.CallbackTests.test_not_found_invites_only_matching_gb_stream)
+按需邀请的参数来自登记对象；其他协议同code不触发设备动作。 ... InnerView.api_on_stream_not_found() params={'app': 'rtp', 'stream': '34020000001320000001'},msg=the stream does not exist
+ok
+test_public_routes_and_existing_session_route (tests.test_security.CallbackTests.test_public_routes_and_existing_session_route)
+中间件收紧不会禁止已有登录入口与登录后的业务路由。 ... ok
+test_query_token_not_allowed_for_sip_or_ambiguous (tests.test_security.CallbackTests.test_query_token_not_allowed_for_sip_or_ambiguous)
+SIP仅身份头；重复/混合token不能引入身份歧义。 ... ok
+test_session_and_legacy_safe_do_not_authorize (tests.test_security.CallbackTests.test_session_and_legacy_safe_do_not_authorize)
+网页管理员身份和旧Safe不是内部服务身份。 ... ok
+test_sip_cannot_modify_or_delete_manual_stream (tests.test_security.CallbackTests.test_sip_cannot_modify_or_delete_manual_stream)
+服务身份也不能越过协议/对象范围改写手工拉流。 ... ok
+test_unknown_route_and_method_denied (tests.test_security.CallbackTests.test_unknown_route_and_method_denied)
+不能靠inner前缀或接口前缀混淆获得放行。 ... ok
+test_valid_sip_delete (tests.test_security.CallbackTests.test_valid_sip_delete)
+合法删除仅影响匹配的GB28181流。 ... ok
+test_valid_update_create_and_repeat_preserve_owner (tests.test_security.CallbackTests.test_valid_update_create_and_repeat_preserve_owner)
+正常GB28181同步有真实库回执，重复同步不改变拥有者。 ... ok
+test_view_auth_without_middleware (tests.test_security.CallbackTests.test_view_auth_without_middleware)
+直接调用视图仍然拒绝匿名，避免中间件遗漏。 ... ok
+test_wrong_token_and_cross_service_denied (tests.test_security.CallbackTests.test_wrong_token_and_cross_service_denied)
+猜测token、跨身份token和伪装服务名不能授权。 ... ok
+test_zlm_cannot_overwrite_different_protocol (tests.test_security.CallbackTests.test_zlm_cannot_overwrite_different_protocol)
+发布不能覆盖手工拉流或跨app同code记录。 ... InnerView.api_on_publish() res={'code': -1, 'msg': 'error This stream does not come from passive streaming'}
+ok
+test_zlm_native_query_token_and_header_supported (tests.test_security.CallbackTests.test_zlm_native_query_token_and_header_supported)
+原生hook查询token和专用身份头都可进行正常发布。 ... ok
+test_capture_uses_argv_without_shell_and_atomic_cache (tests.test_security.ExecutorAndSenderTests.test_capture_uses_argv_without_shell_and_atomic_cache)
+检查实际进程入口传参并注入JPEG产物，验证发布/清理行为。 ... ok
+test_failure_and_timeout_keep_old_cache_and_clean_temp (tests.test_security.ExecutorAndSenderTests.test_failure_and_timeout_keep_old_cache_and_clean_temp)
+失败不能返回/覆盖旧缓存，超时之后临时文件也清理。 ... ok
+test_real_filesystem_lock_excludes_competing_open (tests.test_security.ExecutorAndSenderTests.test_real_filesystem_lock_excludes_competing_open)
+实际OS锁覆盖独立文件描述符，释放后可再获得。 ... ok
+test_real_sip_sender_adds_identity_and_disables_redirect (tests.test_security.ExecutorAndSenderTests.test_real_sip_sender_adds_identity_and_disables_redirect)
+执行真实Channel.update_admin，外部HTTP传输是唯一替身。 ... ok
+test_sip_destination_boundary (tests.test_security.ExecutorAndSenderTests.test_sip_destination_boundary)
+SIP凭据不发送到非回环、其他路径或不安全URL。 ... ok
+test_symlink_and_invalid_jpeg_not_read (tests.test_security.ExecutorAndSenderTests.test_symlink_and_invalid_jpeg_not_read)
+缓存读取拒绝软链接与非JPEG字节。 ... ok
+test_untrusted_executable_rejected (tests.test_security.ExecutorAndSenderTests.test_untrusted_executable_rejected)
+命令字符串、相对可执行和脚本包装器不作为可信FFmpeg。 ... ok
+test_zlm_cannot_start_without_callback_credentials (tests.test_security.ExecutorAndSenderTests.test_zlm_cannot_start_without_callback_credentials)
+启动入口失败关闭，不只验证配置辅助函数。 ... 启动 ZLM 失败
+Traceback (most recent call last):
+  File "/code/app/utils/MediaServerManager.py", line 78, in start
+    cfg = prepare_zlm_callback_config(cfg, g_config.adminPort)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/app/security.py", line 215, in prepare_zlm_callback_config
+    token = service_token("zlm")
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/code/app/security.py", line 46, in service_token
+    raise ValueError("callback credentials not configured")
+ValueError: callback credentials not configured
+ok
+test_zlm_config_has_private_per_service_hooks (tests.test_security.ExecutorAndSenderTests.test_zlm_config_has_private_per_service_hooks)
+真实INI模板复制，注入只在0600运行文件中，原文件保持原字节。 ... ok
+test_admin_can_read_registered_stream (tests.test_security.SnapshotTests.test_admin_can_read_registered_stream)
+当前数据库管理员可读其他所有者登记流。 ... ok
+test_ambiguous_stream_denied (tests.test_security.SnapshotTests.test_ambiguous_stream_denied)
+无唯一约束的旧数据库不允许静默选错所有者。 ... ok
+test_anonymous_denied_before_capture (tests.test_security.SnapshotTests.test_anonymous_denied_before_capture)
+匿名不能到达缓存或媒体执行。 ... ok
+test_bad_session_id_denied (tests.test_security.SnapshotTests.test_bad_session_id_denied)
+异常身份结构失败关闭。 ... ok
+test_capture_failure_bounded_retry (tests.test_security.SnapshotTests.test_capture_failure_bounded_retry)
+非零/无帧失败只重试一次并明确失败。 ... ok
+test_concurrent_capture_denied (tests.test_security.SnapshotTests.test_concurrent_capture_denied)
+同流并发锁使额外刷新不生成额外媒体进程。 ... ok
+test_disabled_and_deleted_users_denied (tests.test_security.SnapshotTests.test_disabled_and_deleted_users_denied)
+停用和删除用户都不能从旧session读取截图。 ... ok
+test_duplicate_query_and_bad_force_denied (tests.test_security.SnapshotTests.test_duplicate_query_and_bad_force_denied)
+拒绝歧义查询和异常强制刷新参数。 ... ok
+test_external_url_parameters_ignored (tests.test_security.SnapshotTests.test_external_url_parameters_ignored)
+用户传入URL/请求IP不会改变本机媒体目的地。 ... ok
+test_force_bypasses_cache (tests.test_security.SnapshotTests.test_force_bypasses_cache)
+授权force刷新依然执行安全路径。 ... ok
+test_invalid_identifiers_denied (tests.test_security.SnapshotTests.test_invalid_identifiers_denied)
+独立恶意输入集覆盖shell、路径、URL、Unicode和长度。 ... ok
+test_legacy_safe_does_not_authorize (tests.test_security.SnapshotTests.test_legacy_safe_does_not_authorize)
+旧Safe不升级为浏览器/对象访问授权。 ... ok
+test_method_and_unknown_object (tests.test_security.SnapshotTests.test_method_and_unknown_object)
+只允许GET和登记对象。 ... ok
+test_other_owner_denied (tests.test_security.SnapshotTests.test_other_owner_denied)
+跨流读取没有执行副作用。 ... ok
+test_owner_can_snapshot (tests.test_security.SnapshotTests.test_owner_can_snapshot)
+所有者正常截图有正确MIME和缓存策略。 ... ok
+test_private_cache_still_checks_owner (tests.test_security.SnapshotTests.test_private_cache_still_checks_owner)
+缓存不能绕过身份或对象授权。 ... ok
+test_public_cache_configuration_rejected (tests.test_security.SnapshotTests.test_public_cache_configuration_rejected)
+误配置不能把新的受保护截图放回static。 ... ok
+test_role_revocation_applies_immediately (tests.test_security.SnapshotTests.test_role_revocation_applies_immediately)
+管理员撤权后即使会话仍有旧标记也被拒。 ... ok
+test_session_admin_flag_not_trusted (tests.test_security.SnapshotTests.test_session_admin_flag_not_trusted)
+伪造/过期会话角色不能代替数据库当前角色。 ... ok
+test_system_created_stream_requires_admin (tests.test_security.SnapshotTests.test_system_created_stream_requires_admin)
+user_id=0不会被普通用户当作公有资源。 ... ok
+test_timeout_has_no_sensitive_error (tests.test_security.SnapshotTests.test_timeout_has_no_sensitive_error)
+超时不返回原命令/秘密/旧缓存。 ... ok
+test_real_ffmpeg_synthetic_rtsp_snapshot (tests.test_security.SyntheticVideoTests.test_real_ffmpeg_synthetic_rtsp_snapshot)
+只在容器回环启动短时合成RTSP fixture，不连接摄像头。 ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 6.437s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

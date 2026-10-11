@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "candidate_sha": "21ded3072827a77703824ca2692d00e453e3c4b6",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python_files_ast_parsed": 85,
+  "local_tests": {
+    "run": 51,
+    "passed": 50,
+    "skipped": 1,
+    "reason": "synthetic RTSP reserved for network-none container",
+    "exit_code": 0,
+    "seconds": 0.188
+  },
+  "pip_freeze": [
+    "asgiref==3.12.1",
+    "certifi==2026.7.22",
+    "charset-normalizer==3.5.2",
+    "Django==5.0.4",
+    "idna==3.20",
+    "requests==2.28.2",
+    "sqlparse==0.6.0",
+    "urllib3==1.26.20"
+  ],
+  "scope": "real Django Client/middleware/views/ORM; isolated Globals and external SIP/FFmpeg transports",
+  "original_audit_reused": "docs/security-audit.md and archived evidence; no repeated full audit",
+  "self_review": "Source diff, annotations, object/identity/data-flow and execution boundaries reviewed by author; independent review NOT_RUN",
+  "real_services": "NOT_RUN",
+  "production_security": "FAIL",
+  "working_directory": "/workspace/scratch/5589af0f455e/rebucca",
+  "command": "/workspace/scratch/5589af0f455e/rebucca-test-venv/bin/python -m tests.run_security",
+  "local_log_sha256": "7a1cceb05f660905e6371f3b1baf5f4163fe27ec1123bbebe16e3b5207e08c76",
+  "captured_at_utc": "2026-10-11T02:00:38.395435+00:00",
+  "test_completed_at_utc": "2026-10-11T01:53:59.310374+00:00"
+}

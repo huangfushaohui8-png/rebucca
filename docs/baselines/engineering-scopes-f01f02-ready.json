@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "project_id": "yy-rebucca",
+  "units": [
+    {
+      "scope_id": "rebucca.adoption",
+      "kind": "system",
+      "path": ".",
+      "parent_scope_id": null,
+      "depends_on": [],
+      "documents": {
+        "spec.md": {
+          "doc_version": "1.1.0",
+          "sha256": "b06b744be6aa777429a989abbd128ef9822e26a1fbd403da01ee2cdf4e9f7060"
+        },
+        "task.md": {
+          "doc_version": "1.1.0",
+          "sha256": "a15d88af6304c5faacc851cde75aea5af7939aab85b583175fc91bd95f9fe02d"
+        },
+        "test-spec.md": {
+          "doc_version": "1.1.0",
+          "sha256": "d85a218556c67dc2fe260a82c197a1f6c6f96ba7f13dd68ada271259b87506c7"
+        }
+      }
+    },
+    {
+      "scope_id": "rebucca.snapshot",
+      "kind": "module",
+      "path": "docs/modules/snapshot",
+      "parent_scope_id": "rebucca.adoption",
+      "depends_on": [
+        {
+          "scope_id": "rebucca.adoption",
+          "spec_version": "1.1.0"
+        }
+      ],
+      "documents": {
+        "spec.md": {
+          "doc_version": "1.0.0",
+          "sha256": "21e3b162452528781dce7a2d399057cd568248e706d557d1cf7595555b2b9d21"
+        },
+        "task.md": {
+          "doc_version": "1.0.0",
+          "sha256": "6cefff1c875300d73ecd800cb35b23822ca75185d53471f532c60638c8e91ffc"
+        },
+        "test-spec.md": {
+          "doc_version": "1.0.0",
+          "sha256": "8bd53c18e6e1eb0be82383a90bc4169989223a5e76eeb9ffce22308ae3da9ed0"
+        }
+      }
+    },
+    {
+      "scope_id": "rebucca.callbacks",
+      "kind": "module",
+      "path": "docs/modules/callbacks",
+      "parent_scope_id": "rebucca.adoption",
+      "depends_on": [
+        {
+          "scope_id": "rebucca.adoption",
+          "spec_version": "1.1.0"
+        }
+      ],
+      "documents": {
+        "spec.md": {
+          "doc_version": "1.0.0",
+          "sha256": "2b5ecb7900747e78639b278978c71e81cdd132a26b23c7778dced7d44301cfb2"
+        },
+        "task.md": {
+          "doc_version": "1.0.0",
+          "sha256": "2bbf987f39b95989da54390fe7a8b049fe16531e77aaf264fdbf7b5e38016796"
+        },
+        "test-spec.md": {
+          "doc_version": "1.0.0",
+          "sha256": "49e2810411790a91e2ffb2f81ca8fe18eb83c2adb2fce331a0b113beb9af45a0"
+        }
+      }
+    }
+  ]
+}

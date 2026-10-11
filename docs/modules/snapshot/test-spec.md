@@ -1,6 +1,6 @@
 # Rebucca 截图模块
 
-版本：1.0.0｜日期：2026-10-11｜状态：本轮软件试验规格已定版｜责任：百望侠（自检，独立复核待进行）
+版本：1.0.1｜日期：2026-10-11｜状态：本轮局部实现及隔离测试通过；真实服务未验收｜责任：百望侠（自检，独立复核待进行）
 
 继承根规格 rebucca.adoption 1.1.0 的业务价值和安全边界，只覆盖 F01/F02 受影响流程；不将整个产品工程化。
 
@@ -12,7 +12,7 @@
   "schema_version": 1,
   "project_id": "yy-rebucca",
   "scope_id": "rebucca.snapshot",
-  "doc_version": "1.0.0",
+  "doc_version": "1.0.1",
   "spec_revision": 1,
   "spec_doc_version": "1.0.0",
   "spec_sha256": "21e3b162452528781dce7a2d399057cd568248e706d557d1cf7595555b2b9d21",
@@ -31,10 +31,15 @@
       ],
       "expected": [
         "无会话/失效用户/旧 Safe 返回 401；普通用户只访问自己流，管理员可访问登记流，非拥有者返回 403，授权前不读缓存/调用 FFmpeg",
-        "旧上游存在失败复现，新版符合拒绝/正常判据"
+        "旧上游失败边界复用 2026-10-04 归档证据；本轮固定新版符合拒绝/正常判据"
       ],
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "tests/test_security.py",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
     },
     {
       "id": "TS-002",
@@ -49,10 +54,15 @@
       ],
       "expected": [
         "GET app/name 是最多50字符的 ASCII 标识，拒绝空值/重复参数/控制字符/路径与 shell 元字符；force仅0/1",
-        "旧上游存在失败复现，新版符合拒绝/正常判据"
+        "旧上游失败边界复用 2026-10-04 归档证据；本轮固定新版符合拒绝/正常判据"
       ],
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "tests/test_security.py",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
     },
     {
       "id": "TS-003",
@@ -67,10 +77,15 @@
       ],
       "expected": [
         "授权正常请求/缓存/强制刷新可返回 JPEG 与 no-store；超时/失败不暴露命令/内部异常，不返回过期强制刷新结果",
-        "旧上游存在失败复现，新版符合拒绝/正常判据"
+        "旧上游失败边界复用 2026-10-04 归档证据；本轮固定新版符合拒绝/正常判据"
       ],
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "tests/test_security.py",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
     }
   ]
 }

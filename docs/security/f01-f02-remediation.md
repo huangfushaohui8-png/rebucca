@@ -2,6 +2,24 @@
 
 日期：2026-10-11。基础 main：`42a0e0baebf7d48cc7a752570386112ae1b6b394`。本轮仅局部修复；产品生产安全准入仍 **FAIL**。
 
+固定已测试代码：[21ded3072827a77703824ca2692d00e453e3c4b6](https://github.com/huangfushaohui8-png/rebucca/commit/21ded3072827a77703824ca2692d00e453e3c4b6)。交付：[Draft PR #2](https://github.com/huangfushaohui8-png/rebucca/pull/2)，分支 `security/f01-f02-20261011`；后续证据提交只更新文档和日志，不改变上述测试代码。
+
+## 已执行验证
+
+| 层次 | 结果与证据 | 实际覆盖 |
+| --- | --- | --- |
+| 源码检查 | AST 85 文件通过；[源文件摘要](evidence/f01-f02/source-manifest.json) | 作者审阅身份、对象、参数和执行边界；沿用原审计，没有重做整产品审计 |
+| 本地隔离 Django | 50 PASS、1 SKIP；[检查摘要](evidence/f01-f02/local-checks.json)、[日志](evidence/f01-f02/local-tests.log) | 真实测试客户端、中间件、目标视图及 ORM；新建内存库，替代 GlobalUtils 和媒体/SIP 副作用 |
+| 主机 Docker 隔离 Linux | 51/51 PASS，退出码 0；[容器记录](evidence/f01-f02/docker-results.json)、[日志](evidence/f01-f02/tests-21ded30.log) | 含回环合成 H264 RTSP 与真实 FFmpeg 取帧；无外网、只读、非 root、无能力/端口/宿主挂载；容器已停止并移除 |
+| 真实产品服务 | NOT_RUN；[范围与门禁](evidence/f01-f02/review-summary.json) | 原生 ZLM/SIP、完整 HTTP 服务生命周期、Windows、生产摄像头/数据库均未验证 |
+| 独立复核及生产准入 | NOT_RUN / FAIL | 局部隔离 PASS 不构成整体产品安全、部署完成或合并许可 |
+
+容器实际 Python 3.12.15、FFmpeg 5.1.9（Debian `7:5.1.9-0+deb12u1`），Docker 29.7.2、Linux amd64；[环境记录](evidence/f01-f02/runtime-21ded30.log)。固定测试镜像 ID 为 `sha256:490f0bbdfd1e3af2e07a96534d0f41f2a30539c64e4acfc992bf4cf73a65ef95`，[构建日志](evidence/f01-f02/build-corrected.log)已保存。其依赖版本复用产品依赖用于兼容测试，不代表已消除原依赖漏洞。
+
+首次候选 `b18f24f4abed762932daf962736b5181cb67b7e4` 的容器运行出现 2 ERROR、1 FAIL，未计为通过：[失败记录](evidence/f01-f02/initial-failure.json)、[原始日志](evidence/f01-f02/tests-b18f.log)。原因分别是 `/tmp` noexec 拒绝测试假执行文件，以及实际 FFmpeg RTSP demuxer 不接受 `-rw_timeout`。已保留 noexec、改用已安装执行文件的元数据作为 subprocess 替身，并将取帧参数改为支持的 `-timeout 5000000`；修正提交完整重跑后通过。
+
+回归覆盖匿名/失效会话/旧 Safe、伪造管理员及角色撤销、跨用户和缓存读取、未知/重复对象、恶意标识和重复查询、超时/失败/并发/软链接、正常所有者/管理员及 force；回调覆盖匿名/网页会话/跨服务 token、缺失或共用秘密、远端或代理头、方法/路由/JSON 边界、跨协议修改与删除、正常更新/删除/发布/按需邀请，以及实际 SIP 发送函数和 ZLM 私有配置生成。具体用例在 [tests/test_security.py](../../tests/test_security.py)。旧失败边界复用 [2026-10-04 证据](evidence/isolated-findings.json)，未重新连接设备复现。
+
 ## 最终行为与兼容边界
 
 - 截图沿用 GET `/nvr/openSnap?app=live&name=camera1`、JPEG 与 no-store。数据库当前有效用户才能访问；普通用户仅自己的流，管理员访问登记流。身份与对象权限在缓存之前校验；旧Safe不能授权。app/name最多50字符，限定ASCII字母/数字开头及后续字母/数字/点/短横线/下划线；重复参数与异常force拒绝。
@@ -25,6 +43,7 @@ python3 -m venv /tmp/rebucca-test-venv
 Docker：
 
 ```bash
+# 使用新的隔离 checkout，固定到上面的已测试代码提交，再构建。
 docker build -f Dockerfile.security-test -t rebucca-security-test:candidate .
 docker run --rm --network none --read-only --cap-drop ALL \
   --security-opt no-new-privileges --user 65534:65534 \
@@ -48,4 +67,4 @@ docker run --rm --network none --read-only --cap-drop ALL \
 
 F03–F15、固定默认SECRET_KEY/凭据、角色/SQL/文件边界、静态业务文件、完整依赖与二进制来源、遥测/外联、真实ZLM/SIP/摄像头与数据库、完整产品启动生命周期均保留原 FAIL/NOT_RUN。作者自检与主机隔离运行不等于独立安全复核。独立复核、真实媒体组件握手和上述门禁满足前，本PR保持Draft；不合并、不上线、不开放公网端口。
 
-执行证据将在固定代码提交后记录于本目录 evidence/f01-f02/，分别标明本地检查、容器测试和真实服务验证。
+执行证据已保存于 [evidence/f01-f02/](evidence/f01-f02/)，分别标明本地检查、隔离容器测试、修正前失败和真实服务未验证项。GitHub PR 后续仅证据/文档提交不改变已测试代码；固定代码摘要用于核验这一点。

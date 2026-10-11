@@ -1,6 +1,6 @@
 # Rebucca 内部回调模块
 
-版本：1.0.0｜日期：2026-10-11｜状态：本轮软件试验规格已定版｜责任：百望侠（自检，独立复核待进行）
+版本：1.0.1｜日期：2026-10-11｜状态：本轮局部实现及隔离测试通过；真实服务未验收｜责任：百望侠（自检，独立复核待进行）
 
 继承根规格 rebucca.adoption 1.1.0 的业务价值和安全边界，只覆盖 F01/F02 受影响流程；不将整个产品工程化。
 
@@ -12,7 +12,7 @@
   "schema_version": 1,
   "project_id": "yy-rebucca",
   "scope_id": "rebucca.callbacks",
-  "doc_version": "1.0.0",
+  "doc_version": "1.0.1",
   "spec_revision": 1,
   "spec_doc_version": "1.0.0",
   "spec_sha256": "2b5ecb7900747e78639b278978c71e81cdd132a26b23c7778dced7d44301cfb2",
@@ -31,10 +31,15 @@
       ],
       "expected": [
         "四个精确 /inner/ 路由强制独立服务凭据；旧 Safe/登录会话均不能绕过",
-        "旧上游存在失败复现，新版符合拒绝/正常判据"
+        "旧上游失败边界复用 2026-10-04 归档证据；本轮固定新版符合拒绝/正常判据"
       ],
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "tests/test_security.py",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
     },
     {
       "id": "TS-002",
@@ -49,10 +54,15 @@
       ],
       "expected": [
         "SIP只可创建/更新/删除匹配 app=rtp、code=name 的 GB28181(21)流，不改手工拉流/其他协议记录或所有者",
-        "旧上游存在失败复现，新版符合拒绝/正常判据"
+        "旧上游失败边界复用 2026-10-04 归档证据；本轮固定新版符合拒绝/正常判据"
       ],
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "tests/test_security.py",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
     },
     {
       "id": "TS-003",
@@ -67,10 +77,15 @@
       ],
       "expected": [
         "SIP POST请求带独立服务头/凭据，禁止重定向泄露",
-        "旧上游存在失败复现，新版符合拒绝/正常判据"
+        "旧上游失败边界复用 2026-10-04 归档证据；本轮固定新版符合拒绝/正常判据"
       ],
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "tests/test_security.py",
+        "docs/security/evidence/f01-f02/tests-21ded30.log",
+        "docs/security/evidence/f01-f02/docker-results.json",
+        "固定代码 21ded3072827a77703824ca2692d00e453e3c4b6"
+      ]
     }
   ]
 }
