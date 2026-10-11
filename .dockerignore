@@ -1,0 +1,9 @@
+.git
+**/__pycache__
+rebucca.sqlite3
+static
+var
+docs
+log
+zlm/**/rebucca_zlm*
+zlm/**/*.so*

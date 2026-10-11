@@ -1,6 +1,6 @@
 # 东方宇阳 Rebucca 引入审计 — 验证规格
 
-版本：1.0.1｜日期：2026-10-04｜状态：本期审计材料验证完成；产品准入仍 FAIL
+版本：1.1.0｜日期：2026-10-11｜状态：本期审计材料验证完成；产品准入仍 FAIL
 
 这里的 PASS 只表示审计材料满足独立判据。应用的安全边界、真实视频功能、完整部署检查在报告中单列 FAIL/NOT_RUN，不能用文档检查的 PASS 替代上线准入。
 
@@ -11,10 +11,10 @@
   "kind": "test-spec",
   "project_id": "yy-rebucca",
   "scope_id": "rebucca.adoption",
-  "doc_version": "1.0.1",
-  "spec_revision": 1,
-  "spec_doc_version": "1.0.0",
-  "spec_sha256": "e0762315f4b9d722a56dc310ba7b66bc2e014550532c44e926f900754792d53e",
+  "doc_version": "1.1.0",
+  "spec_revision": 2,
+  "spec_doc_version": "1.1.0",
+  "spec_sha256": "b06b744be6aa777429a989abbd128ef9822e26a1fbd403da01ee2cdf4e9f7060",
   "tests": [
     {
       "id": "TS-001",
@@ -100,6 +100,25 @@
         "docs/security/evidence/verification.json 设备能力与未运行项",
         "docs/security/evidence/publication.json 166 原文件及 18 新文件比对通过"
       ]
+    },
+    {
+      "id": "TS-005",
+      "title": "本轮模块边界、固定版本与回退证据",
+      "requirements": [
+        "R-005"
+      ],
+      "preconditions": "模块 ready；新建合成库，禁用 GlobalUtils/后台线程导入副作用",
+      "steps": [
+        "运行截图及回调隔离套件",
+        "核对提交、容器隔离、PR、真实服务未运行项和回退",
+        "确认原风险门禁未被放宽"
+      ],
+      "expected": [
+        "两模块局部行为通过；附固定版本",
+        "整体生产准入仍 FAIL，真实依赖与独立复核未验收有记录"
+      ],
+      "status": "NOT_RUN",
+      "evidence": []
     }
   ]
 }

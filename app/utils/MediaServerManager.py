@@ -20,6 +20,7 @@ class MediaServerManager(object):
     def __init__(self):
         self._proc = None
         self._lock = threading.RLock()
+        self._runtime_cfg = None
 
     def _paths(self):
         from app.utils.GlobalUtils import g_config
@@ -61,6 +62,7 @@ class MediaServerManager(object):
         }
 
     def start(self):
+        """生成有独立ZLM身份的私有hook配置后启动；缺凭据时失败关闭。"""
         exe, cfg = self._paths()
         if not exe or not os.path.isfile(exe):
             return False, "mediaStartPath 无效或文件不存在: %s" % (exe or "(空)")
@@ -70,9 +72,13 @@ class MediaServerManager(object):
             return True, "流媒体服务已在运行"
 
         work_dir = os.path.dirname(exe) or str(os.getcwd())
-        cmd = [exe, "-c", cfg]
-        logger.info("启动 ZLM: %s", " ".join(cmd))
         try:
+            from app.security import prepare_zlm_callback_config
+            from app.utils.GlobalUtils import g_config
+            cfg = prepare_zlm_callback_config(cfg, g_config.adminPort)
+            self._runtime_cfg = cfg
+            cmd = [exe, "-c", cfg]
+            logger.info("启动 ZLM（私有运行时配置）")
             kwargs = {"cwd": work_dir, "stdout": subprocess.DEVNULL, "stderr": subprocess.DEVNULL}
             if sys.platform == "win32":
                 kwargs["creationflags"] = getattr(subprocess, "CREATE_NO_WINDOW", 0)
@@ -86,8 +92,18 @@ class MediaServerManager(object):
                     return True, "流媒体服务已启动 (pid=%s)" % self._proc.pid
             return False, "进程已拉起但 API 未响应，请检查端口与 config.ini"
         except Exception as e:
+            self._remove_runtime_config()
             logger.exception("启动 ZLM 失败")
             return False, str(e)
+
+    def _remove_runtime_config(self):
+        """只清理本管理器生成的临时凭据文件，保留原媒体配置。"""
+        if self._runtime_cfg:
+            try:
+                os.unlink(self._runtime_cfg)
+            except FileNotFoundError:
+                pass
+            self._runtime_cfg = None
 
     def _kill_by_image(self, exe):
         if not exe:
@@ -108,6 +124,7 @@ class MediaServerManager(object):
             logger.warning("kill_by_image %s: %s", name, e)
 
     def stop(self):
+        """停止媒体进程后删除持有服务秘密的临时配置。"""
         exe, _cfg = self._paths()
         with self._lock:
             proc = self._proc
@@ -128,6 +145,7 @@ class MediaServerManager(object):
 
         if self.api_alive():
             return False, "流媒体服务仍在运行，请检查是否有其他进程占用"
+        self._remove_runtime_config()
         return True, "流媒体服务已停止"
 
     def restart(self):

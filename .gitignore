@@ -43,3 +43,7 @@ app/recording/__pycache__/*
 # logs / docs / external services
 docs/*
 log/*
+
+# 私有运行凭据、测试缓存与快照不进入公开仓库
+var/
+tests/__pycache__/

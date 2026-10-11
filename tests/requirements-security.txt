@@ -1,0 +1,9 @@
+# 测试兼容当前产品直接依赖；这些版本不构成生产供应链准入。
+Django==5.0.4
+requests==2.28.2
+asgiref==3.12.1
+sqlparse==0.6.0
+charset-normalizer==3.5.2
+idna==3.20
+urllib3==1.26.20
+certifi==2026.7.22

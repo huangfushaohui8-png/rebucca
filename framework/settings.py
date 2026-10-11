@@ -149,3 +149,9 @@ X_FRAME_OPTIONS = 'ALLOWALL'  # 允许所有网站通过iframe嵌入
 
 # 允许大JSON请求体（集群平台通过WebSocket传递base64文件，模型文件最大1000M）
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1610612736  # 1.5GB
+
+# F01：新快照和临时服务配置放在非static私有目录，不沿用公开业务缓存。
+REBUCCA_SNAPSHOT_DIR = os.environ.get("REBUCCA_SNAPSHOT_DIR", str(BASE_DIR / "var" / "snapshots"))
+REBUCCA_PRIVATE_RUNTIME_DIR = os.environ.get("REBUCCA_PRIVATE_RUNTIME_DIR", str(BASE_DIR / "var" / "runtime"))
+# FFmpeg路径只来自受控运行环境，截图不使用可被后台修改的config.ffmpeg命令字符串。
+REBUCCA_FFMPEG_PATH = os.environ.get("REBUCCA_FFMPEG_PATH", "/usr/bin/ffmpeg")

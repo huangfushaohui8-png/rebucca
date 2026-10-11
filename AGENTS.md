@@ -327,3 +327,9 @@ authorization: "后续外部／生产动作的授权依据或明确缺口"
 已核验上游入口：Python 3.10+；Linux 安装命令为 pip install -r requirements-linux.txt，Windows 相应清单；上游演示入口 python manage.py runserver 0.0.0.0:10001。它们存在不等于本次已运行或适合生产。GlobalUtils 导入即启动 SIP；AppConfig.ready 依赖 RUN_MAIN，换 WSGI/关闭重载需改启动生命周期后实测。
 
 审计命令由 docs/security/evidence/verification.json 记录。原版 runserver、附带 ZLM 二进制和 .pt 模型本次不执行。修复源码时先更新受影响的独立模块四件套并获得真实验证证据；本次未启用 CI 或分支保护。单 Agent 审查如实注明，无独立第三方复核。
+
+## 2026-10-11 修复范围补充（项目规则 1.1.0）
+
+本轮用户授权修改 F01/F02 源码、补测试、独立 Draft PR 和隔离容器试验。原 1.0.0 的“本次只读”仅约束历史审计。不得连接生产视频/数据库、启动附带 ZLM/权重、公开端口或将局部修复宣称生产 PASS。通用 2.5.0 与当前 2.6.0 已比较：差异为界面品牌规则，本轮无页面变更，保留2.5.0受管块。
+
+实现和测试遵守 docs/modules/snapshot 与 callbacks 三文档。必须从非static目录提供受保护截图；回调真实对端限定回环，不信任转发头，独立服务凭据不得沿用config.safe。服务token可重放，完整签名/幂等、真实ZLM/SIP与独立安全复核保留合并/上线门禁。

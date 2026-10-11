@@ -11,6 +11,7 @@ from django.db import transaction
 from app.views.ViewsBase import *
 from app.utils.LanguageUtils import GSettingsLangDefault
 from app.utils.Utils import GB28181CodeUtils
+from app.security import require_callback_service, boundary_error
 
 """
 内部服务调用的接口
@@ -20,6 +21,14 @@ from app.utils.Utils import GB28181CodeUtils
 _code_locks = {}
 _code_locks_guard = threading.Lock()
 
+
+def _unique_stream_by_code(code):
+    """旧库无唯一约束：遇到重复编号拒绝操作，避免静默选错视频对象。"""
+    streams = list(StreamModel.objects.filter(code=code)[:2])
+    if len(streams) > 1:
+        raise ValueError("ambiguous stream code")
+    return streams[0] if streams else None
+
 def _get_code_lock(code):
     """获取指定code的锁对象"""
     with _code_locks_guard:
@@ -28,12 +37,14 @@ def _get_code_lock(code):
         return _code_locks[code]
 
 # （内部调用，无需国际化）被rebucca调用，用于修改流（主要是国标等协议）
+@require_callback_service("sip")
 def api_on_media_update_stream(request):
+    """仅认证SIP服务可同步GB28181对象；不改其他接入方式或所有者。"""
     ret = False
     msg = "unknown error"
 
     if request.method == 'POST':
-        params = f_parsePostParams(request)
+        params = request.callback_payload
         lang = f_parseRequestLang(request)
         try:
             forward_state = int(params.get("forwardState", 0))
@@ -91,8 +102,10 @@ def api_on_media_update_stream(request):
             # 注意：SQLite写锁是数据库级的，不能用transaction.atomic()，否则不同code会互相阻塞报"database is locked"
             code_lock = _get_code_lock(name)
             with code_lock:
-                stream = StreamModel.objects.filter(code=name).first()
+                stream = _unique_stream_by_code(name)
                 if stream:
+                    if (stream.app != app or stream.name != name or stream.pull_stream_type != 21):
+                        return boundary_error("SIP stream scope denied", 403)
                     # 编辑（不修改nickname，nickname允许用户自定义）
                     pass
                 else:
@@ -154,19 +167,23 @@ def api_on_media_update_stream(request):
     return f_responseJson(res)
 
 # （内部调用，无需国际化）被GB28181SipServer调用，用于删除回退通道的数据库记录
+@require_callback_service("sip")
 def api_on_media_delete_stream(request):
+    """SIP删除只作用于匹配的GB28181流，禁止跨协议删除。"""
     ret = False
     msg = "unknown error"
 
     if request.method == 'POST':
         try:
-            params = f_parsePostParams(request)
+            params = request.callback_payload
             code = params.get("code")
             if not code:
                 raise Exception("The parameter code is invalid")
 
-            stream = StreamModel.objects.filter(code=code).first()
+            stream = _unique_stream_by_code(code)
             if stream:
+                if stream.app != "rtp" or stream.name != code or stream.pull_stream_type != 21:
+                    return boundary_error("SIP stream scope denied", 403)
                 stream.delete()
                 g_gb28181SipServer.remove_channel(code)
                 ret = True
@@ -187,7 +204,9 @@ def api_on_media_delete_stream(request):
     return f_responseJson(res)
 
 # （内部调用，无需国际化）被rebucca_zlm调用，用于实时获得推流信息
+@require_callback_service("zlm")
 def api_on_publish(request):
+    """仅认证ZLM更新匹配的被动推流对象，保留原hook响应契约。"""
     # ZLMediaKit Hook https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-HOOK-API
 
     ret = False
@@ -195,7 +214,7 @@ def api_on_publish(request):
 
     if request.method == 'POST':
         try:
-            params = f_parsePostParams(request)
+            params = request.callback_payload
             lang = f_parseRequestLang(request)
 
             _app = params.get("app", "").strip()
@@ -208,10 +227,11 @@ def api_on_publish(request):
             if _app == APP_NAME_LIVE:
                 # 被动推流（RTSP/RTMP推流到ZLM的live应用）
                 stream_code = _stream
-                stream = StreamModel.objects.filter(code=stream_code).first()
+                stream = _unique_stream_by_code(stream_code)
                 now_date = datetime.now()
                 if stream:
-                    if stream.pull_stream_type == 31 or stream.pull_stream_type == 32:
+                    if (stream.app == _app and stream.name == _stream
+                            and stream.pull_stream_type in (31, 32)):
                         pass
                     else:
                         raise Exception("This stream does not come from passive streaming")
@@ -275,22 +295,28 @@ def api_on_publish(request):
     return f_responseJson(res)
 
 # （内部调用，无需国际化）被rebucca_zlm调用，用于实时获得not found的流信息
+@require_callback_service("zlm")
 def api_on_stream_not_found(request):
+    """仅ZLM可触发匹配的GB28181通道按需邀请，不跨对象调用设备。"""
     # ZLMediaKit Hook https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-HOOK-API
     ret = False
     msg = "unknown error"
     params = None
 
     if request.method == 'POST':
-        params = f_parsePostParams(request)
+        params = request.callback_payload
 
         _app = params.get("app", "").strip()
         _stream = params.get("stream", "").strip()
 
         if _app == APP_NAME_RTP:
             # gb28181 流不存在，尝试重新 invite
-            stream = StreamModel.objects.filter(code=_stream).first()
-            if stream and stream.pull_stream_type == 21:
+            try:
+                stream = _unique_stream_by_code(_stream)
+            except ValueError:
+                return boundary_error("ambiguous stream code", 409)
+            if (stream and stream.app == _app and stream.name == _stream
+                    and stream.pull_stream_type == 21):
                 __ret, __msg = g_gb28181SipServer.request_invite(
                     client_id=stream.camera_device_id, channel_id=stream.name)
                 if __ret:

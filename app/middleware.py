@@ -3,6 +3,7 @@
 # gitee开源地址：https://gitee.com/yuturuishi/rebucca
 # github开源地址：https://github.com/yuturuishi/rebucca
 from django.http import HttpResponseRedirect
+from app.security import authenticate_callback, boundary_error
 
 try:
     from django.utils.deprecation import MiddlewareMixin
@@ -13,21 +14,22 @@ except ImportError:
 AUTH_WHITELIST_PREFIXES = (
     '/login',
     '/logout',
-    '/inner/',
-    '/nvr/openSnap',
     '/user/openCaptcha',
     '/static/',
 )
 
-# 需 Safe 请求头鉴权的 open API（供 ZLM/内部服务调用，不暴露给浏览器）
-OPEN_API_SAFE_HEADER_PREFIXES = (
-    '/inner/',
-)
-
-
 class SimpleMiddleware(MiddlewareMixin):
     def process_request(self, request):
+        """敏感入口先执行独立边界，不能被公共前缀/会话/旧Safe放行。"""
         path = request.path_info
+
+        if path.startswith('/inner/'):
+            return authenticate_callback(request)
+        if path in ('/nvr/openSnap', '/nvr/openSnapShot'):
+            if not request.session.get("user"):
+                return boundary_error("login required", 401)
+            # 用户有效性和流对象权限由实际截图视图从数据库重新判定。
+            return None
 
         for prefix in AUTH_WHITELIST_PREFIXES:
             if path.startswith(prefix):

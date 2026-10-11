@@ -98,7 +98,7 @@ class Channel:
         self.last_register_time = 0  # 毫秒时间戳
 
     def update_admin(self, server):
-        """同步通道信息到rebekah_admin数据库（与C++版本逻辑一致）"""
+        """在独立SIP身份下同步通道信息，仅向回环地址发送且不跟随重定向。"""
         admin_host = server.admin_host
         if not admin_host:
             return False, "admin_host not configured"
@@ -143,16 +143,19 @@ class Channel:
         }
 
         # 发送POST请求
-        headers = {
-            "Content-Type": "application/json;"
-        }
+        from app.security import sip_callback_headers
+        try:
+            headers = sip_callback_headers(url)
+        except ValueError:
+            return False, "SIP callback credentials or destination unavailable"
 
         # 重试机制：admin服务启动可能晚于SIP服务，连接拒绝时重试
         max_retries = 3
         retry_interval = 1.0
         for attempt in range(1, max_retries + 1):
             try:
-                response = requests.post(url, json=params, headers=headers, timeout=5)
+                response = requests.post(url, json=params, headers=headers, timeout=5,
+                                         allow_redirects=False)
 
                 if response.status_code == 200:
                     result = response.json()
